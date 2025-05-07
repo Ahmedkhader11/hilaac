@@ -18,9 +18,74 @@
     --foreground: #ededed;
   }
 }
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
+/* HOME PAGE */
+
+.animate-slideDown {
+  animation: slideDown 0.3s ease-out;
+}
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-white text-black transition-colors duration-200; /* Smooth transition */
+}
+
+.dark body {
+  @apply bg-black text-white transition-colors duration-200; /* Smooth transition */
+}
+/* Header */
+.header {
+  @apply flex flex-wrap items-center justify-between px-6 py-1 bg-gradient-to-r from-gray-300 via-blue-400 to-purple-300 fixed top-0 left-0 right-0 z-50;
+}
+
+@media (min-width: 768px) {
+  .header {
+    @apply md:flex-nowrap md:mx-auto md:px-6 md:py-1; /* Keep existing medium screen styles and adjust vertical padding */
+  }
+}
+
+/* Example: Adjusting padding on larger screens if needed */
+@media (min-width: 1280px) {
+  .header {
+    @apply xl:px-8 xl:py-2; /* Adjust vertical padding for extra-large screens */
+  }
+}
+/* Nav Links */
+.nav_links {
+  @apply hover:text-[#f27405] transition-all duration-300 cursor-pointer hover:translate-y-[-2px] hover:font-semibold;
+}
+
+.sign_links {
+  @apply text-sm text-white rounded-full px-2 py-1 bg-black font-normal ring hover:transition-all hover:duration-500 cursor-pointer;
+}
+
+.explore_cards {
+  @apply relative p-6 shadow-lg shadow-amber-800 bg-gray-200 rounded-xl hover:shadow-xl transition-shadow duration-300 cursor-pointer hover:transform hover:transition-transform hover:scale-104;
+}
+
+.explore_cards h3 {
+  @apply text-xl font-bold text-center mb-3 hover:text-amber-700 transition-all duration-300 dark:text-black;
+}
+
+.single_service {
+  @apply relative;
+}
+
+.single_service::after {
+  content: "";
+  @apply absolute inset-0 left-[5px] top-[5px] z-10 opacity-0;
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.single_service:hover::after {
+  @apply opacity-100;
+  @apply text-white text-base font-semibold; /* These will affect text inside the pseudo-element */
 }
