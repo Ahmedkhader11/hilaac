@@ -225,7 +225,7 @@ const Rooms = () => {
 
             <div className="lg:w-1/2">
               <img
-                src="/images/bookings.png"
+                src="/images/booking.png"
                 alt="Book a room"
                 className="rounded-lg shadow-lg"
               />
