@@ -62,7 +62,7 @@ const Header = () => {
 
         <div className="md:hidden flex justify-end">
           <button
-            className="text-white hover:text-[#f27405] transition-colors duration-300"
+            className="text-amber-700 font-bold hover:text-[#f27405] transition-all duration-300"
             aria-label="Open Menu"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
@@ -74,39 +74,39 @@ const Header = () => {
       {/* Mobile Menu */}
 
       {isMobileMenuOpen && (
-        <div className=" md:hidden bg-gray-50 p-4 fixed top-10 left-0 right-0 z-50 flex justify-between">
+        <div className=" md:hidden bg-amber-300 p-4 fixed top-10 left-0 right-0 z-50 flex justify-between transition-all duration-300">
           <nav className="flex flex-col gap-4 items-start dark:text-black">
             <Link
               href={"/"}
-              className="nav_links"
+              className="nav_links font-black"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Home
             </Link>
             <Link
               href={"/about"}
-              className="nav_links"
+              className="nav_links font-black"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               About
             </Link>
             <Link
               href={"/rooms"}
-              className="nav_links"
+              className="nav_links font-black"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Rooms
             </Link>
             <Link
               href={"/blog"}
-              className="nav_links"
+              className="nav_links font-black"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Blogs
             </Link>
             <Link
               href={"/contact"}
-              className="nav_links"
+              className="nav_links font-black"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Contact

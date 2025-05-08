@@ -1,5 +1,6 @@
 "use client";
 
+import Banner from "@/components/home/banner";
 import RoomsdataFetching from "@/components/home/roomsdataFetching";
 import TestimonialSwiper from "@/components/home/TestimonialSwiper";
 import Link from "next/link";
@@ -894,33 +895,7 @@ export default function Home() {
         </div>
       </section>
       {/* Banner */}
-      <section
-        className="container mx-auto relative bg-no-repeat bg-cover bg-center py-24 md:py-48 overflow-hidden cursor-pointer" // Added cursor-pointer
-        onMouseEnter={(e) => {
-          const video = e.currentTarget.querySelector("video");
-          if (video && video.paused) {
-            video.play().catch((error) => {
-              console.error("Autoplay on hover prevented:", error);
-              // Optionally handle if autoplay fails
-            });
-          }
-        }}
-        onClick={(e) => {
-          const video = e.currentTarget.querySelector("video");
-          if (video && !video.paused) {
-            video.pause();
-          }
-        }}
-      >
-        <div className="absolute inset-0 z-0">
-          <video
-            src="/videos/video1.mp4" // Replace with your actual video path
-            loop
-            muted
-            className="w-full h-full object-cover"
-          />
-        </div>
-      </section>
+      <Banner />
     </main>
   );
 }

@@ -42,14 +42,14 @@ const ClientHeader = ({ isMobile = false, setIsMobileMenuOpen = () => {} }) => {
         <div className="flex flex-col md:flex-row gap-2 pl-2">
           <Link
             href="/sign-in"
-            className="sign_links"
+            className="sign_links font-bold py-1 max-sm:px-2 "
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Sign In
           </Link>
           <Link
             href="/sign-up"
-            className="sign_links"
+            className="sign_links bg-white hover:bg-amber-600 font-bold px-2 py-1 "
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Sign Up
