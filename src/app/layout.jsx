@@ -25,8 +25,15 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Hilaac Hotel",
   description: "Book your perfect hotel room",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_BASE_URL || "https://hilac.vercel.app"
+  ),
   openGraph: {
-    images: "/og-image.png",
+    images: [
+      `${
+        process.env.NEXT_PUBLIC_BASE_URL || "https://hilac.vercel.app"
+      }/og-image.png`,
+    ],
   },
 };
 
