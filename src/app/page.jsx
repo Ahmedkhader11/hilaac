@@ -601,7 +601,7 @@ export default function Home() {
         </div>
       </section>
       {/* Book Room */}
-      <section className="container mx-auto py-16 bg-gray-100 rounded">
+      <section className="container mx-auto py-16 bg-gray-200 rounded">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-20 ">
             {/* Left Column - Booking Form */}
