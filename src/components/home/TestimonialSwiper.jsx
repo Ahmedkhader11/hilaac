@@ -1,7 +1,9 @@
+"use client";
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-const TestimonialCard = ({ imageSrc, name, role, rating }) => (
+const TestimonialCard = ({ imageSrc, name, role, rating, review }) => (
   <div className="bg-white rounded-lg p-6 md:p-8 w-80 sm:w-96 shadow-[4px_0px_0px_rgba(63,63,156,0.2)] hover:shadow-[4px_0px_0px_rgba(63,63,156,0.8)]  transition-shadow duration-300 mb-10 ">
     <div className="flex items-center justify-between mb-4">
       <img
@@ -32,54 +34,18 @@ const TestimonialCard = ({ imageSrc, name, role, rating }) => (
         </svg>
       ))}
     </div>
-    <p className="text-gray-600 leading-relaxed">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
-      consequuntur cupiditate quisquam minima nam perspiciatis dignissimos nemo
-      nostrum et illum! Ipsum accusamus sit quam. Voluptate hic numquam eum illo
-      animi optio est magni sint, alias quae, amet ipsum odio aliquid!
-    </p>
+    <p className="text-gray-600 leading-relaxed">{review}</p>
   </div>
 );
 
 const TestimonialSection = () => {
-  const testimonials = [
-    {
-      imageSrc: "/images/test-1.png",
-      name: "Abdishakour Eid",
-      role: "Client",
-      rating: 5,
-    },
-    {
-      imageSrc: "/images/test-2.png",
-      name: "Abdihamid Abdillahi",
-      role: "Customer",
-      rating: 4,
-    },
-    {
-      imageSrc: "/images/test-3.png",
-      name: "Ahmed Khader",
-      role: "User",
-      rating: 3,
-    },
-    {
-      imageSrc: "/images/test-3.png",
-      name: "Subeer Awal",
-      role: "Customer",
-      rating: 5,
-    },
-    {
-      imageSrc: "/images/test-3.png",
-      name: "Abdiqadir Dayib",
-      role: "Customer",
-      rating: 4,
-    },
-    {
-      imageSrc: "/images/test-3.png",
-      name: "Shucayb Harun",
-      role: "Customer",
-      rating: 5,
-    },
-  ];
+  const [testimonials, setTestimonials] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/testimonials")
+      .then((res) => res.json())
+      .then((data) => setTestimonials(data));
+  }, []);
 
   return (
     <div className="container  mx-auto px-2 sm:px-3 lg:px-5 py-5">

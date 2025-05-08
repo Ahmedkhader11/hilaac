@@ -59,7 +59,7 @@ export default function RoomSwiper({ rooms }) {
               <div className="bg-indigo-700 mb-5 w-3/4 h-11  mx-auto ">
                 <ul className="font-semibold text-white pl-5 grid grid-cols-2 leading-10 text-center ">
                   <li className="border-r border-gray-500">
-                    {room.price}/Night
+                    ${room.price}/Night
                   </li>
                   <li
                     className={`cursor-pointer border-l ${

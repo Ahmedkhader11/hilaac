@@ -32,7 +32,9 @@ export default function RoomGrid({ rooms }) {
           <div className="translate-y-[-22px]">
             <div className="bg-indigo-700 mb-5 w-3/4 h-11 mx-auto">
               <ul className="font-semibold text-white grid grid-cols-2 leading-10 text-center">
-                <li className="border-r border-gray-500">{room.price}/Night</li>
+                <li className="border-r border-gray-500">
+                  ${room.price}/Night
+                </li>
                 <li
                   className={`cursor-pointer border-l ${
                     room.booked

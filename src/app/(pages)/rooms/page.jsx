@@ -86,14 +86,17 @@ const Rooms = () => {
                 Pearl Of The Adriatic
               </h2>
               <p className="text-gray-700 dark:text-gray-400 leading-relaxed mb-4">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Repellat soluta distinctio dignissimos nemo voluptates
-                architecto assumenda nostrum ipsum earum totam!
+                Nestled along the breathtaking Adriatic coast, our luxury resort
+                offers a sanctuary of elegance and relaxation. Immerse yourself
+                in the beauty of pristine surroundings and world-class
+                hospitality.
               </p>
+
               <p className="text-gray-700 dark:text-gray-400 leading-relaxed mb-6">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Deserunt ut sint sed magnam, quas possimus? Excepturi mollitia
-                totam velit esse?
+                Whether seeking a peaceful retreat or an adventurous getaway,
+                every corner of our resort is designed to inspire. Experience
+                unmatched comfort, stunning ocean views, and indulgent
+                amenities.
               </p>
               <button className="bg-indigo-600 hover:bg-indigo-800 text-white font-semibold py-2 px-8 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-300 ease-in-out cursor-pointer">
                 DISCOVER MORE

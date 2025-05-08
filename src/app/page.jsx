@@ -17,10 +17,13 @@ export default function Home() {
               Enjoy a Luxury Experience
             </h1>
             <p className="text-gray-200 mb-10">
-              Donec vitae libero nonenim placerat eleifend aliquam erat
-              volutpat. Curabiture diam ex, dapibus purus sapien, cursus sed
-              nisl tristique, commodo gravida lectus non.
+              Welcome to Hilaac Hotel, where elegance meets comfort. Whether
+              you're here for a relaxing getaway or a business retreat, our
+              thoughtfully designed spaces, exquisite dining, and world-class
+              hospitality ensure an unforgettable experience. Indulge in luxury,
+              embrace serenity, and let us redefine your stay.
             </p>
+
             <button className="px-10 py-2  text-white rounded bg-indigo-600 hover:bg-indigo-800 transition-all duration-200 cursor-pointer font-bold tracking-widest ">
               Visit Us
             </button>
@@ -174,18 +177,22 @@ export default function Home() {
             </div>
 
             <p className="text-gray-800 mb-4 dark:text-gray-400">
-              Morbi tortor urna, placerat vel arcu quis, fringilla egestas
-              neque. Morbi sit amet porta sapien, non tincidunt nulla.
+              Nestled in the heart of Hargeisa, Hilaac Hotel stands as a beacon
+              of comfort, security, and excellence. With a commitment to
+              top-tier hospitality, we offer a serene escape where elegance
+              meets modern convenience.
             </p>
 
             <p className="text-gray-800 mb-6 dark:text-gray-400">
-              Cras finibus laoreet felis et hendrerit. Integer ligula lorem,
-              finibus vitae lorem at, egestas euismod neque. Nulla facilisi. Sed
-              at sapien nec justo tincidunt tincidunt. Suspendisse potenti.
+              Whether you're traveling for business or leisure, our
+              well-appointed rooms, exceptional service, and warm atmosphere
+              ensure an experience beyond expectations. Discover a haven where
+              safety, luxury, and tradition blend seamlessly for an
+              unforgettable stay.
             </p>
 
             <div className="space-y-3 mb-6">
-              <div className="flex flex-col text-amber-700 dark:text-amber-300">
+              <div className="flex flex-col">
                 <div className="flex items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -195,20 +202,9 @@ export default function Home() {
                   >
                     <path d="M9.9997 15.1709L19.1927 5.97891L20.6077 7.39291L9.9997 18.0009L3.63574 11.6369L5.04974 10.2229L9.9997 15.1709Z"></path>
                   </svg>
-                  <p>24 Month /24,000 km Nationwide Warranty monotone</p>
-                </div>
-                <div className="flex items-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 text-green-500 pr-2"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path d="M9.9997 15.1709L19.1927 5.97891L20.6077 7.39291L9.9997 18.0009L3.63574 11.6369L5.04974 10.2229L9.9997 15.1709Z"></path>
-                  </svg>
-                  <p>
-                    Curabitur dapibus nisl a uma congue, in pharetra urna
-                    accumsan.
+                  <p className="text-amber-500">
+                    Guaranteed comfort and security with 24/7 customer support
+                    for an effortless stay.
                   </p>
                 </div>
                 <div className="flex items-center">
@@ -220,7 +216,24 @@ export default function Home() {
                   >
                     <path d="M9.9997 15.1709L19.1927 5.97891L20.6077 7.39291L9.9997 18.0009L3.63574 11.6369L5.04974 10.2229L9.9997 15.1709Z"></path>
                   </svg>
-                  <p>Customer Rewards Promgram and excellent technology</p>
+                  <p className="text-amber-500">
+                    Premium amenities designed to enhance your stay, from fine
+                    dining to world-class.
+                  </p>
+                </div>
+                <div className="flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5 text-green-500 pr-2"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M9.9997 15.1709L19.1927 5.97891L20.6077 7.39291L9.9997 18.0009L3.63574 11.6369L5.04974 10.2229L9.9997 15.1709Z"></path>
+                  </svg>
+                  <p className="text-amber-500">
+                    Exclusive rewards program that lets you enjoy special
+                    discounts, priority bookings.
+                  </p>
                 </div>
               </div>
 
@@ -242,10 +255,13 @@ export default function Home() {
             <h2 className="text-3xl md:text-5xl font-bold mt-2 mb-4 lg:tracking-widest text-indigo-700 font-serif">
               The Hotel
             </h2>
-            <p className="max-w-2xl mx-auto text-gray-600 ">
-              Proin consectetur non dolor vitae pulcinar. Pellentesque
-              sollicitudin dolor eget neque, Nullam molestie lacus sit amet
-              vwlit fermentum feugiat. Mauris auctor eget
+            <p className="max-w-2xl mx-auto text-gray-600">
+              Discover the refined elegance of Hilaac Hotel, where luxury and
+              comfort come together to create an unforgettable experience.
+              Nestled in the heart of Hargeisa, our hotel offers a serene
+              retreat with world-class amenities, exquisite dining, and
+              unparalleled hospitality. Whether you're here for business or
+              leisure, we ensure every moment is tailored to perfection.
             </p>
           </div>
 
@@ -261,9 +277,9 @@ export default function Home() {
                 />
                 <h3>Quality Room</h3>
                 <p className="text-gray-600 text-center mb-4 leading-relaxed">
-                  Nullam molestie lacus sit amet vwlit fermentum feugiat. Mauris
-                  auctor eget, Nullam molestie lacus sit amet vwlit fermentum
-                  feugiat.
+                  Discover our Quality Rooms, where comfort meets contemporary
+                  elegance. Enjoy plush bedding, modern amenities, and a serene,
+                  restorative escape.
                 </p>
                 <Link
                   href="#"
@@ -284,10 +300,11 @@ export default function Home() {
                 />
                 <h3>Private Beach</h3>
                 <p className="text-gray-600 text-center mb-4">
-                  Nullam molestie lacus sit amet vwlit fermentum feugiat. Mauris
-                  auctor eget, Nullam molestie lacus sit amet vwlit fermentum
-                  feugiat.
+                  Relax at our Private Beach, a secluded retreat offering
+                  timeless luxury and serenity. Unwind with calm views, gentle
+                  waves, and an exclusive seaside escape.
                 </p>
+
                 <Link
                   href="#"
                   className="text-blue-600 hover:underline flex justify-center"
@@ -307,9 +324,9 @@ export default function Home() {
                 />
                 <h3>Best Accommodation</h3>
                 <p className="text-gray-600 text-center mb-4">
-                  Nullam molestie lacus sit amet vwlit fermentum feugiat. Mauris
-                  auctor eget, Nullam molestie lacus sit amet vwlit fermentum
-                  feugiat.
+                  Experience refined comfort in our exclusive accommodations,
+                  where modern design meets timeless elegance. Enjoy a stay
+                  defined by thoughtful details.
                 </p>
                 <Link
                   href="#"
@@ -330,9 +347,9 @@ export default function Home() {
                 />
                 <h3>Wellness & Special</h3>
                 <p className="text-gray-600 text-center mb-4">
-                  Nullam molestie lacus sit amet vwlit fermentum feugiat. Mauris
-                  auctor eget, Nullam molestie lacus sit amet vwlit fermentum
-                  feugiat.
+                  Indulge in exclusive wellness amenities and special treatments
+                  crafted for your well-being. Rejuvenate your mind and body
+                  with personalized care and attention.
                 </p>
                 <Link
                   href="#"
@@ -353,9 +370,9 @@ export default function Home() {
                 />
                 <h3>Restaurant & Teashops</h3>
                 <p className="text-gray-600 text-center mb-4">
-                  Nullam molestie lacus sit amet vwlit fermentum feugiat. Mauris
-                  auctor eget, Nullam molestie lacus sit amet vwlit fermentum
-                  feugiat.
+                  Savor gourmet dishes at our in-house restaurant and enjoy
+                  artisan teas in cozy teashops. Experience culinary delights
+                  paired with a warm, inviting atmosphere.
                 </p>
                 <Link
                   href="#"
@@ -376,9 +393,9 @@ export default function Home() {
                 />
                 <h3>Special Offers</h3>
                 <p className="text-gray-600 text-center mb-4">
-                  Nullam molestie lacus sit amet vwlit fermentum feugiat. Mauris
-                  auctor eget, Nullam molestie lacus sit amet vwlit fermentum
-                  feugiat.
+                  Take advantage of our seasonal special offers designed for
+                  discerning guests. Enjoy exclusive deals and unique perks
+                  tailored for an unforgettable experience.
                 </p>
                 <Link
                   href="#"
@@ -403,9 +420,10 @@ export default function Home() {
               Rooms & Suites
             </h2>
             <p className="max-w-2xl mx-auto text-gray-600">
-              Proin consectetur non dolor vitae pulbinar. Pelllentesque
-              sollicutudin dolor eget neque vive,Proin consectetur non dolor
-              vitae pulbinar. Pelllentesque sollicutudin dolor eget neque vive
+              Experience the perfect blend of modern sophistication and timeless
+              allure in our Rooms & Suites. Each space is thoughtfully designed
+              with elegant touches and contemporary comforts, creating an
+              inviting haven for relaxation and indulgence.
             </p>
           </div>
           <RoomsdataFetching />
@@ -437,15 +455,19 @@ export default function Home() {
                 Pearl Of The Adriatic
               </h2>
               <p className="text-gray-700 dark:text-gray-400 leading-relaxed mb-4">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Repellat soluta distinctio dignissimos nemo voluptates
-                architecto assumenda nostrum ipsum earum totam!
+                Nestled along the breathtaking Adriatic coast, our luxury resort
+                offers a sanctuary of elegance and relaxation. Immerse yourself
+                in the beauty of pristine surroundings and world-class
+                hospitality.
               </p>
+
               <p className="text-gray-700 dark:text-gray-400 leading-relaxed mb-6">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Deserunt ut sint sed magnam, quas possimus? Excepturi mollitia
-                totam velit esse?
+                Whether seeking a peaceful retreat or an adventurous getaway,
+                every corner of our resort is designed to inspire. Experience
+                unmatched comfort, stunning ocean views, and indulgent
+                amenities.
               </p>
+
               <button className="bg-indigo-600 hover:bg-indigo-800 text-white font-semibold py-2 px-8 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-300 ease-in-out cursor-pointer">
                 <Link href="/discover">DISCOVER MORE</Link>
               </button>
@@ -468,14 +490,16 @@ export default function Home() {
                 </h2>
               </div>
               <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Expedita voluptates laboriosam et nesciunt dignissimos, eligendi
-                animi cupiditate ab a qui?
+                Enjoy premium services at unbeatable prices, ensuring every stay
+                is effortless and memorable. From personalized concierge
+                assistance to exclusive guest perks, we cater to your needs.
               </p>
+
               <p className="text-lg text-gray-700 leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi
-                mollitia tenetur consequatur ducimus non quod aspernatur ipsam,
-                optio, distinctio ut eveniet neque eaque culpa id?
+                Whether you desire a lavish experience or thoughtful
+                conveniences, our extra services enhance every moment. Indulge
+                in tailored hospitality designed for comfort, luxury, and
+                absolute satisfaction.
               </p>
             </div>
 
@@ -504,7 +528,7 @@ export default function Home() {
                     alt="check_icon"
                     className="w-5 h-5 mr-2"
                   />
-                  Hotel quis justo at lorem
+                  Fresh rooms with daily cleaning.
                 </p>
                 <p className="text-gray-600 flex items-center leading-8">
                   <img
@@ -512,7 +536,7 @@ export default function Home() {
                     alt="check_icon"
                     className="w-5 h-5 mr-2"
                   />
-                  Fusce sodales, urna et tempus
+                  Premium sanitation for spotless comfort.
                 </p>
                 <p className="text-gray-600 flex items-center leading-8">
                   <img
@@ -520,7 +544,7 @@ export default function Home() {
                     alt="check_icon"
                     className="w-5 h-5 mr-2"
                   />
-                  Vestibulum blanit lorem quis
+                  Hassle-free housekeeping every day.
                 </p>
                 <button className="absolute bottom-0 left-0 w-full bg-indigo-600 hover:bg-indigo-800 text-white font-semibold py-3 px-6 rounded-b-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-300 ease-in-out cursor-pointer">
                   GET STARTED
@@ -551,7 +575,7 @@ export default function Home() {
                     alt="check_icon"
                     className="w-5 h-5 mr-2"
                   />
-                  Feature one included
+                  Complimentary drinks in your stay.
                 </p>
                 <p className="text-gray-600 flex items-center leading-8">
                   <img
@@ -559,7 +583,7 @@ export default function Home() {
                     alt="check_icon"
                     className="w-5 h-5 mr-2"
                   />
-                  More advanced options
+                  Fresh juices and handcrafted cocktails.
                 </p>
                 <p className="text-gray-600 flex items-center leading-8">
                   <img
@@ -567,7 +591,7 @@ export default function Home() {
                     alt="check_icon"
                     className="w-5 h-5 mr-2"
                   />
-                  Dedicated support
+                  Curated choices for refreshing enjoyment.
                 </p>
                 <button className="absolute bottom-0 left-0 w-full bg-indigo-600 hover:bg-indigo-800 text-white font-semibold py-3 px-6 rounded-b-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-300 ease-in-out cursor-pointer">
                   LEARN MORE
@@ -588,11 +612,10 @@ export default function Home() {
               What Our Client Says
             </h2>
             <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
-              placeat excepturi pariatur vero dolor porro animi eum molestias
-              esse eius. Eius, eligendi. Possimus sapiente non minus architecto
-              tenetur qui itaque libero eaque voluptatibus facere. Libero
-              dolorem eius praesentium ea? Omnis?
+              Our guests rave about their unforgettable experiences, from
+              exceptional service to breathtaking views. Every stay is crafted
+              with comfort, elegance, and personalized care, ensuring
+              satisfaction beyond expectations.
             </p>
           </div>
 
