@@ -23,8 +23,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Hilaac Apartment",
-  description: "The best hotel in Somaliland",
+  title: "Hilaac Hotel",
+  description: "Book your perfect hotel room",
+  openGraph: {
+    images: "/og-image.png",
+  },
 };
 
 export default function RootLayout({ children }) {
