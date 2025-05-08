@@ -1,31 +1,43 @@
-// utils/db.js (optimized)
 import mongoose from "mongoose";
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
-const connection = {};
-
-async function db() {
-  if (connection.isConnected) return;
-
-  try {
-    const dbConnection = await mongoose.connect(MONGODB_URI, {
-      maxPoolSize: 10,
-      serverSelectionTimeoutMS: 5000,
-      socketTimeoutMS: 45000,
-    });
-
-    connection.isConnected = dbConnection.connections[0].readyState;
-    console.log("MongoDB Connected");
-  } catch (err) {
-    console.error("MongoDB Connection Error:", err);
-    process.exit(1);
-  }
+if (!MONGODB_URI) {
+  throw new Error("MONGODB_URI is not defined in environment variables");
 }
 
-// Optional: Close connection on app shutdown
+let cached = global.mongoose || { conn: null, promise: null };
+
+async function db() {
+  if (cached.conn) return cached.conn; // Return cached connection
+
+  if (!cached.promise) {
+    cached.promise = mongoose
+      .connect(MONGODB_URI, {
+        maxPoolSize: 10,
+        serverSelectionTimeoutMS: 5000,
+        socketTimeoutMS: 45000,
+      })
+      .then((conn) => {
+        console.log("MongoDB Connected");
+        cached.conn = conn;
+        return conn;
+      })
+      .catch((err) => {
+        console.error("MongoDB Connection Error:", err);
+        process.exit(1);
+      });
+  }
+
+  cached.conn = await cached.promise;
+  global.mongoose = cached; // Store globally
+  return cached.conn;
+}
+
+// Close connection on shutdown
 process.on("SIGINT", async () => {
   await mongoose.connection.close();
+  console.log("MongoDB Disconnected");
   process.exit(0);
 });
 

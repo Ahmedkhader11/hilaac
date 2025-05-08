@@ -7,48 +7,53 @@ import Link from "next/link";
 import { useContext } from "react";
 import ThemeContext from "@/context/theme";
 
-const ClientHeader = () => {
+// Default setIsMobileMenuOpen to an empty function if not provided
+const ClientHeader = ({ isMobile = false, setIsMobileMenuOpen = () => {} }) => {
   const { isSignedIn } = useUser();
   const { darkTheme, setDarkTheme } = useContext(ThemeContext);
 
   return (
-    <div className="hidden md:flex items-center  md:gap-4 md:flex-nowrap  ">
+    <div
+      className={`${
+        isMobile ? "flex flex-col gap-y-3" : "hidden md:flex"
+      } items-center md:gap-1 md:flex-nowrap`}
+    >
       {/* Dark Mode Toggle */}
-      {darkTheme ? (
-        <button className="flex justify-center items-center font-extrabold px-2 py-2  hover:bg-black hover:text-white rounded-full">
-          <MdOutlineLightMode
-            className="cursor-pointer text-xl"
-            onClick={() => {
-              setDarkTheme(false);
-              localStorage.removeItem("darkTheme");
-            }}
-          />
-        </button>
-      ) : (
-        <button className="flex justify-center items-center font-extrabold px-2 py-2 hover:bg-black hover:text-white rounded-full">
-          <MdDarkMode
-            className="cursor-pointer text-xl"
-            onClick={() => {
-              setDarkTheme(true);
-              localStorage.setItem("darkTheme", "true");
-            }}
-          />
-        </button>
-      )}
+      <button
+        className="hover:bg-black hover:text-white rounded-full p-2 dark:text-black"
+        onClick={() => {
+          const newTheme = !darkTheme;
+          setDarkTheme(newTheme);
+          localStorage.setItem("darkTheme", newTheme ? "true" : "");
+          setIsMobileMenuOpen(false);
+        }}
+      >
+        {darkTheme ? (
+          <MdOutlineLightMode className="text-xl" />
+        ) : (
+          <MdDarkMode className="text-xl" />
+        )}
+      </button>
 
       {/* Authentication Links */}
       {isSignedIn ? (
-        <div className="flex items-center">
-          <UserButton />
-        </div>
+        <UserButton />
       ) : (
-        <div className="flex items-center gap-4">
-          <Link href={"/sign-in"} className="sign_links ">
-            Sign in
+        <div className="flex flex-col md:flex-row gap-2 pl-2">
+          <Link
+            href="/sign-in"
+            className="sign_links"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Sign In
           </Link>
-          {/* <Link href={"/sign-up"} className="sign_links">
-            Sign up
-          </Link> */}
+          <Link
+            href="/sign-up"
+            className="sign_links"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Sign Up
+          </Link>
         </div>
       )}
     </div>

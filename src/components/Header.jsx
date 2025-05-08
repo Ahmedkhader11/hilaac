@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import ClientHeader from "./home/clientHeader";
 import { useState } from "react";
 
@@ -10,13 +11,30 @@ const Header = () => {
   return (
     <header>
       <div className="header">
-        {/* Logo */}
-        <Link href={"/"} className="font-black text-2xl">
-          <span className="font-extrabold text-indigo-700 font-serif tracking-widest">
-            Hilaac{" "}
-          </span>
-          <span className="text-xl font-bold tracking-wider">Hotel</span>
-        </Link>
+        <div className="flex items-center justify-center">
+          <Link href="/">
+            <Image
+              src="/images/logo.png" // or "logo.png" if that's your file
+              alt="Hilaac Hotel Logo"
+              width={30}
+              height={30}
+              className="rounded-full mr-0.5 md:mr-2 "
+            />
+          </Link>
+          <Link href={"/"} className="text-2xl">
+            {/* Show only 'H' on small screens */}
+            <span className="font-extrabold text-[32px] text-amber-600 font-serif tracking-normal italic block md:hidden">
+              Hilaac
+            </span>
+            {/* Show 'H hotel' on larger screens */}
+            <span className="hidden md:block">
+              <span className="font-extrabold text-[32px] text-amber-600 font-serif tracking-normal italic">
+                H{" "}
+              </span>
+              <span className="text-md font-normal">hotel</span>
+            </span>
+          </Link>
+        </div>
 
         {/* Navigation Menu */}
         <nav className="hidden md:flex items-center gap-4">
@@ -30,7 +48,7 @@ const Header = () => {
             Our Rooms
           </Link>
           <Link href={"/blog"} className="nav_links">
-            Blog
+            Blogs
           </Link>
           <Link href={"/contact"} className="nav_links">
             Contact
@@ -38,9 +56,10 @@ const Header = () => {
         </nav>
 
         {/* Client Header */}
-
-        {/* Toggle Button For Mobile Menu */}
         <ClientHeader />
+
+        {/* Mobile Menu Toggle */}
+
         <div className="md:hidden flex justify-end">
           <button
             className="text-white hover:text-[#f27405] transition-colors duration-300"
@@ -55,31 +74,48 @@ const Header = () => {
       {/* Mobile Menu */}
 
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-gray-200 p-4 flex justify-end">
-          <nav className="flex flex-col gap-4">
-            <Link href={"/"} className="nav_links">
+        <div className=" md:hidden bg-gray-50 p-4 fixed top-10 left-0 right-0 z-50 flex justify-between">
+          <nav className="flex flex-col gap-4 items-start dark:text-black">
+            <Link
+              href={"/"}
+              className="nav_links"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
               Home
             </Link>
-            <Link href={"/about"} className="nav_links">
+            <Link
+              href={"/about"}
+              className="nav_links"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
               About
             </Link>
-            <Link href={"/rooms"} className="nav_links">
-              Our Rooms
+            <Link
+              href={"/rooms"}
+              className="nav_links"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Rooms
             </Link>
-            <Link href={"/facilities"} className="nav_links">
-              Facilities
+            <Link
+              href={"/blog"}
+              className="nav_links"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Blogs
             </Link>
-            <Link href={"/blog"} className="nav_links">
-              Blog
-            </Link>
-            <Link href={"/contact"} className="nav_links">
+            <Link
+              href={"/contact"}
+              className="nav_links"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
               Contact
             </Link>
           </nav>
 
           {/* Authentication Links */}
-          <div className="mt-4">
-            <ClientHeader />
+          <div>
+            <ClientHeader isMobile setIsMobileMenuOpen={setIsMobileMenuOpen} />
           </div>
         </div>
       )}

@@ -47,7 +47,7 @@ export default function RootLayout({ children }) {
           >
             <ClerkLoaded>
               <Header />
-              <main className="min-h-screen mx-auto pt-12  ">{children}</main>
+              <main className="min-h-screen mx-auto pt-10">{children}</main>
               <Footer />
             </ClerkLoaded>
           </body>

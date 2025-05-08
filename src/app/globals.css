@@ -64,7 +64,7 @@ body {
 }
 
 .sign_links {
-  @apply text-sm text-white rounded-full px-2 py-1 bg-black font-normal ring hover:transition-all hover:duration-500 cursor-pointer;
+  @apply text-sm text-white rounded-lg px-2 py-1 bg-black font-normal ring hover:transition-all hover:duration-500 cursor-pointer;
 }
 
 .explore_cards {
