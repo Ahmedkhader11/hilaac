@@ -29,7 +29,7 @@ const ContactPage = () => {
         style={{ backgroundImage: "url('/images/about-1.png')" }}
       >
         <div className="text-center">
-          <h2 className="text-5xl font-extrabold">Blog</h2>
+          <h2 className="text-5xl font-extrabold">Contact</h2>
           {/* Navigation Links */}
           <div className="mt-4 text-lg">
             <Link
@@ -39,7 +39,7 @@ const ContactPage = () => {
               Home
             </Link>
             &nbsp;/&nbsp;
-            <span className="font-bold text-yellow-300">Blog</span>
+            <span className="font-bold text-yellow-300">Contact</span>
           </div>
         </div>
       </section>

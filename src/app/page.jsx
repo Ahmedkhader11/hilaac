@@ -151,11 +151,11 @@ export default function Home() {
       <section className="container mx-auto my-20 py-5 ">
         <div className="container mx-auto max-w-screen px-4 flex flex-col lg:flex-row gap-6 justify-between items-center flex-wrap lg:flex-nowrap pb-10 ">
           {/* Image Container */}
-          <div className=" w-full mx-auto  flex-1/3 lg:w-1/2 relative pr-20  mt-4">
+          <div className="ring max-sm:w-full max-sm:mx-auto  flex-1/3 lg:w-1/2 relative pr-20  mt-4">
             <img
               src="/images/about-1.png"
               alt="hotel_img"
-              className="w-full h-auto shadow-sm rounded-lg"
+              className="w-full ml-8 h-auto shadow-sm rounded-lg"
             />
             <img
               src="/images/about-2.png"
