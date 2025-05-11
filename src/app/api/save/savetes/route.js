@@ -1,5 +1,5 @@
 import db from "@/utils/db";
-import Testimonials from "@/modal/testimonialShemal";
+import Testimonials from "@/modals/testimonialShemal";
 
 const JSON_HEADERS = {
   "Content-Type": "application/json",

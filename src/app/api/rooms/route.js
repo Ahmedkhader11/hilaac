@@ -1,6 +1,7 @@
-import Room from "@/modal/roomSchema";
-import Booking from "@/modal/bookings";
+import Room from "@/modals/roomSchema";
+import Booking from "@/modals/Bookings";
 import db from "@/utils/db";
+import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
@@ -26,15 +27,18 @@ export async function GET() {
       })
     );
 
-    return new Response(JSON.stringify(updatedRooms), {
+    return new NextResponse(JSON.stringify(updatedRooms), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
     console.error("Failed to fetch rooms:", error);
-    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    });
+    return new NextResponse(
+      JSON.stringify({ error: "Internal Server Error" }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
   }
 }

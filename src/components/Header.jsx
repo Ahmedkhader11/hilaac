@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <header>
       <div className="header">
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center pl-10">
           <Link href="/">
             <Image
               src="/images/logo.png" // or "logo.png" if that's your file

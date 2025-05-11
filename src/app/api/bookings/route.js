@@ -1,6 +1,7 @@
 import db from "@/utils/db";
-import Booking from "@/modal/bookings";
-import Room from "@/modal/roomSchema";
+import Booking from "@/modals/Bookings";
+import Room from "@/modals/roomSchema";
+import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
@@ -28,7 +29,7 @@ export async function POST(req) {
       !guests ||
       !paymentMethod
     ) {
-      return new Response(
+      return new NextResponse(
         JSON.stringify({ error: "All required fields must be provided" }),
         { status: 400 }
       );
@@ -36,7 +37,7 @@ export async function POST(req) {
 
     const room = await Room.findOne({ id: roomId });
     if (!room) {
-      return new Response(JSON.stringify({ error: "Room not found" }), {
+      return new NextResponse(JSON.stringify({ error: "Room not found" }), {
         status: 404,
       });
     }
@@ -53,7 +54,7 @@ export async function POST(req) {
     });
 
     if (isBooked) {
-      return new Response(
+      return new NextResponse(
         JSON.stringify({
           error:
             "Room is already booked for the selected dates. Please choose another room.",
@@ -76,7 +77,7 @@ export async function POST(req) {
 
     await newBooking.save();
 
-    return new Response(
+    return new NextResponse(
       JSON.stringify({
         bookingId: newBooking._id,
         message: "Booking successful",
@@ -84,7 +85,7 @@ export async function POST(req) {
       { status: 201 }
     );
   } catch (error) {
-    return new Response(
+    return new NextResponse(
       JSON.stringify({ error: "Booking failed: " + error.message }),
       { status: 500 }
     );

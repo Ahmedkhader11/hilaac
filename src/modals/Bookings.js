@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const BookingSchema = new mongoose.Schema({
   room: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Room", // Reference to the Room model
+    ref: "Room",
     required: true,
   },
   name: {
@@ -40,12 +40,21 @@ const BookingSchema = new mongoose.Schema({
   paymentMethod: {
     type: String,
     enum: {
-      values: ["Zaad", "E-dahap", "Soltelco"], // Match frontend values
+      values: ["Zaad", "E-dahap", "Soltelco"],
       message: "Invalid payment method",
     },
     required: true,
   },
+  status: {
+    type: String,
+    enum: ["Pending", "Confirmed", "Cancelled"],
+    default: "Pending",
+  },
   createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  updatedAt: {
     type: Date,
     default: Date.now,
   },
