@@ -48,7 +48,7 @@ export default function Home() {
                   </p>
                   <input
                     type="date"
-                    className="w-full border border-gray-300 rounded px-3 py-2 "
+                    className="w-full border border-gray-300 text-black rounded px-3 py-2 "
                   />
                 </div>
               </div>
@@ -66,7 +66,7 @@ export default function Home() {
                   </p>
                   <input
                     type="date"
-                    className="w-full border border-gray-300 rounded px-3 py-2"
+                    className="w-full border border-gray-300 text-black rounded px-3 py-2"
                   />
                 </div>
               </div>
