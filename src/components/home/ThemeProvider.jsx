@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 
 const ThemeProvider = ({ children }) => {
   const themeFromLocalStorage =
-    typeof localStorage !== "undefined" && localStorage.getItem("darkTheme")
+    typeof localStorage !== "undefined"
       ? JSON.parse(localStorage.getItem("darkTheme"))
       : false;
 

@@ -32,7 +32,7 @@ export default function Home() {
 
         {/* Booking Form */}
         <section className="w-full lg:w-5/12 p-4">
-          <div className="booking-form bg-white p-6 rounded-lg shadow-md dark:text-black">
+          <div className="booking-form bg-gray-100 p-6 rounded-lg shadow-md dark:text-black">
             <h2 className="text-2xl font-bold mb-4">Book A Room</h2>
             <div className="flex flex-wrap -mx-2 ">
               {/* Check-in Date */}
@@ -48,8 +48,7 @@ export default function Home() {
                   </p>
                   <input
                     type="date"
-                    value={new Date().toISOString().split("T")[0]} //
-                    className="w-full border border-gray-300 text-black rounded px-3 py-2 "
+                    className="w-full border border-gray-300 text-black dark:text-black rounded px-3 py-2 "
                   />
                 </div>
               </div>
@@ -67,8 +66,7 @@ export default function Home() {
                   </p>
                   <input
                     type="date"
-                    value={new Date().toISOString().split("T")[0]} //
-                    className="w-full border border-gray-300 text-black rounded px-3 py-2"
+                    className="w-full border border-gray-300 text-black dark:text-black rounded px-3 py-2"
                   />
                 </div>
               </div>
@@ -410,7 +408,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      .{/* Rooms */}
+      {/* Rooms */}
       <section className="container mx-auto my-5  border-gray-200">
         <div className="flex flex-col ">
           <div className="w-full flex flex-col items-center text-center py-5">
@@ -478,7 +476,7 @@ export default function Home() {
         </div>
       </section>
       {/* Prices */}
-      <section className="container mx-auto relative py-7 md:py-10 lg:py-15 my-10  bg-gray-100 overflow-hidden rounded">
+      <section className="container mx-auto relative py-7 md:py-10 lg:py-15 my-10  overflow-hidden rounded">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="flex flex-col lg:flex-row gap-10 lg:gap-20">
             {/* first Column - Text Content */}
@@ -604,13 +602,13 @@ export default function Home() {
         </div>
       </section>
       {/* Testimonial */}
-      <section className="container mx-auto my-5 bg-gray-50">
+      <section className="container mx-auto my-5 pt-5">
         <div className="container  mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <small className="uppercase text-yellow-500 font-bold tracking-wide">
               Testimonial
             </small>
-            <h2 className="text-3xl font-extrabold text-indigo-700 font-serif sm:text-4xl lg:text-5xl mt-3">
+            <h2 className="text-3xl font-extrabold text-indigo-700 font-serif sm:text-4xl lg:text-5xl mt-7">
               What Our Client Says
             </h2>
             <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
@@ -627,7 +625,7 @@ export default function Home() {
         </div>
       </section>
       {/* Book Room */}
-      <section className="container mx-auto my-5 py-5 bg-gray-200 rounded">
+      <section className="container mx-auto my-5 py-5 bg-gray-100 rounded">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-20 ">
             {/* Left Column - Booking Form */}

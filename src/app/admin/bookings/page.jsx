@@ -25,7 +25,7 @@ export default async function BookingsAdmin() {
   }));
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto py-8">
       <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-200">
         Booking Management
       </h1>
@@ -34,7 +34,7 @@ export default async function BookingsAdmin() {
           <thead>
             <tr className="bg-indigo-600 text-white">
               <th className="px-4 py-2">Booking ID</th>
-              <th className="px-4 py-2">Customer Name</th>
+              <th className="px-4 py-2">Cus.Name</th>
               <th className="px-4 py-2">Room</th>
               <th className="px-4 py-2">Dates</th>
               <th className="px-4 py-2">Status</th>

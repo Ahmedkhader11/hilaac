@@ -52,16 +52,16 @@ export default function BookingActionButtons({ bookingId }) {
       <button
         onClick={handleConfirmBooking}
         disabled={pendingAction !== null}
-        className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors text-xs"
+        className="px-5 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors text-xs"
       >
-        {pendingAction === "confirm" ? "Updating..." : "Confirm"}
+        {pendingAction === "confirm" ? "Confirming." : "Confirm"}
       </button>
       <button
         onClick={handleDeleteBooking}
         disabled={pendingAction !== null}
         className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition-colors text-xs"
       >
-        {pendingAction === "delete" ? "Deleting..." : "Cancel"}
+        {pendingAction === "delete" ? "Cancelling.." : "Cancel"}
       </button>
     </div>
   );

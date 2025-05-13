@@ -33,7 +33,9 @@ const ClientHeader = ({ isMobile = false, setIsMobileMenuOpen = () => {} }) => {
         onClick={() => {
           const newTheme = !darkTheme;
           setDarkTheme(newTheme);
-          localStorage.setItem("darkTheme", newTheme ? "true" : "");
+          // localStorage.setItem("darkTheme", newTheme ? "true" : "");
+          localStorage.setItem("darkTheme", JSON.stringify(newTheme));
+
           setIsMobileMenuOpen(false);
         }}
       >

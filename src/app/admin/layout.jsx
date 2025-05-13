@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -16,7 +16,17 @@ import { UserButton } from "@clerk/nextjs";
 
 export default function AdminLayout({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [notifications, setNotifications] = useState([]);
+  const [showNotifications, setShowNotifications] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    // Simulate fetching notifications (replace this with an API call)
+    setNotifications([
+      { id: 1, message: "New booking received!" },
+      { id: 2, message: "User signed up for an account." },
+    ]);
+  }, []);
 
   const navLinks = [
     {
@@ -122,11 +132,18 @@ export default function AdminLayout({ children }) {
             </div>
 
             {/* Notification & Profile */}
-            <div className="flex items-center gap-4 max-md:mr-7 mt-2  ">
-              <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors cursor-pointer">
+            <div className="relative">
+              <button
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors cursor-pointer"
+                onClick={() => setShowNotifications(!showNotifications)}
+              >
                 <span className="sr-only">Notifications</span>
                 <div className="relative">
-                  <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                  {notifications.length > 0 && (
+                    <span className="absolute top-0 right-0 w-4 h-4 bg-red-500 text-white text-xs flex items-center justify-center rounded-full">
+                      {notifications.length}
+                    </span>
+                  )}
                   <svg
                     className="w-6 h-6 text-gray-600 dark:text-gray-300"
                     fill="none"
@@ -142,6 +159,26 @@ export default function AdminLayout({ children }) {
                   </svg>
                 </div>
               </button>
+
+              {/* Notification Dropdown */}
+              {showNotifications && (
+                <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-700 shadow-lg rounded-lg p-4">
+                  {notifications.length === 0 ? (
+                    <p className="text-sm text-gray-500 dark:text-gray-200">
+                      No notifications
+                    </p>
+                  ) : (
+                    notifications.map((notif) => (
+                      <p
+                        key={notif.id}
+                        className="p-2 border-b border-gray-300 dark:border-gray-700"
+                      >
+                        {notif.message}
+                      </p>
+                    ))
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </header>

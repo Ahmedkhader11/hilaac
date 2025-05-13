@@ -3,7 +3,6 @@ import "./globals.css";
 import { ClerkLoaded, ClerkProvider } from "@clerk/nextjs";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { dark } from "@clerk/themes";
 import ThemeProvider from "@/components/home/ThemeProvider";
 
 /* 
@@ -39,7 +38,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider appearance={{ baseTheme: dark }}>
+    <ClerkProvider>
       <ThemeProvider>
         <html lang="en">
           <body
