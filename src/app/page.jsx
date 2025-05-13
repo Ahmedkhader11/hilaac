@@ -48,8 +48,8 @@ export default function Home() {
                   </p>
                   <input
                     type="date"
+                    value={new Date().toISOString().split("T")[0]} //
                     className="w-full border border-gray-300 text-black rounded px-3 py-2 "
-                    placeholder={Date.now()}
                   />
                 </div>
               </div>
@@ -67,8 +67,8 @@ export default function Home() {
                   </p>
                   <input
                     type="date"
+                    value={new Date().toISOString().split("T")[0]} //
                     className="w-full border border-gray-300 text-black rounded px-3 py-2"
-                    placeholder={Date.now()}
                   />
                 </div>
               </div>
