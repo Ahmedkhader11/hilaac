@@ -10,9 +10,9 @@ import {
   Menu,
   X,
   Settings,
-  LogOut,
   AlertCircle,
 } from "lucide-react";
+import { UserButton } from "@clerk/nextjs";
 
 export default function AdminLayout({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -45,7 +45,7 @@ export default function AdminLayout({ children }) {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Mobile Sidebar Toggle */}
       <button
-        className="md:hidden fixed top-4 right-4 z-50 p-2 rounded-lg bg-gray-800 text-white hover:bg-gray-700 transition-colors"
+        className="md:hidden fixed top-16 right-2 z-50 p-2 rounded-lg bg-gray-800 active:ring text-white hover:bg-gray-700 transition-colors"
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
       >
         {isSidebarOpen ? (
@@ -57,7 +57,7 @@ export default function AdminLayout({ children }) {
 
       {/* Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-40 w-64 bg-gradient-to-b from-gray-800 to-gray-900 text-white transform transition-transform duration-300 ease-in-out
+        className={`fixed inset-y-0 left-0 z-40 w-64 bg-gradient-to-b from-gray-800 to-gray-900 text-white transform transition-transform duration-300 ease-in-out mt-10
           ${
             isSidebarOpen
               ? "translate-x-0"
@@ -66,7 +66,7 @@ export default function AdminLayout({ children }) {
       >
         <div className="flex flex-col h-full p-4 border-r border-gray-700">
           {/* Logo Section */}
-          <div className="mb-8 px-4 py-3 bg-gray-700/20 rounded-lg">
+          <div className="mb-4 px-4 py-3 bg-gray-700/20 rounded-lg">
             <h2 className="text-xl font-bold flex items-center gap-2">
               <AlertCircle className="w-6 h-6 text-blue-400" />
               Hilaac Admin
@@ -79,9 +79,9 @@ export default function AdminLayout({ children }) {
               <Link
                 href={link.href}
                 key={link.href}
-                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
+                className={`flex items-center gap-3 px-4 py-2 rounded-lg transition-all ${
                   pathname === link.href
-                    ? "bg-blue-600/80 text-white shadow-lg"
+                    ? "bg-blue-600/80 text-white"
                     : "hover:bg-gray-700/30"
                 }`}
               >
@@ -101,14 +101,14 @@ export default function AdminLayout({ children }) {
                 <p className="text-sm font-medium">Admin User</p>
                 <p className="text-xs text-gray-400">admin@hilaac.com</p>
               </div>
-              <LogOut className="w-5 h-5 ml-auto text-gray-400 hover:text-white" />
+              <UserButton className="w-5 h-5 ml-auto" />
             </div>
           </div>
         </div>
       </aside>
 
       {/* Main Content */}
-      <main className="md:ml-64 transition-all duration-300">
+      <main className="md:ml-64 transition-all duration-300 my-2">
         {/* Top Header */}
         <header className="bg-white dark:bg-gray-800 shadow-sm">
           <div className="px-6 py-4 flex items-center justify-between">
@@ -122,8 +122,8 @@ export default function AdminLayout({ children }) {
             </div>
 
             {/* Notification & Profile */}
-            <div className="flex items-center gap-4">
-              <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors">
+            <div className="flex items-center gap-4 max-md:mr-7 mt-2  ">
+              <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors cursor-pointer">
                 <span className="sr-only">Notifications</span>
                 <div className="relative">
                   <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
@@ -147,8 +147,8 @@ export default function AdminLayout({ children }) {
         </header>
 
         {/* Content Area */}
-        <div className="p-6">
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6">
+        <div className="p-2">
+          <div className="bg-white dark:bg-gray-800 rounded-xl min-h-screen p-6">
             {children}
           </div>
         </div>

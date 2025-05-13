@@ -148,7 +148,7 @@ export default function Home() {
         </section>
       </section>
       {/* About Us */}
-      <section className="container mx-auto my-20 py-5 ">
+      <section className="container mx-auto my-5  ">
         <div className="container mx-auto max-w-screen px-4 flex flex-col lg:flex-row gap-6 justify-between items-center flex-wrap lg:flex-nowrap pb-10 ">
           {/* Image Container */}
           <div className=" max-sm:w-full max-sm:mx-auto  flex-1/3 lg:w-1/2 relative pr-20  mt-4">
@@ -247,10 +247,10 @@ export default function Home() {
         </div>
       </section>
       {/* Explore */}
-      <section className="container mx-auto my-10 py-5">
+      <section className="container mx-auto my-5 ">
         <div className="container mx-auto px-4">
           {/* Title Section */}
-          <div className="w-full flex flex-col items-center text-center py-10">
+          <div className="w-full flex flex-col items-center text-center py-5">
             <span className="text-lg font-semibold text-gray-600">Explore</span>
             <h2 className="text-3xl md:text-5xl font-bold mt-2 mb-4 lg:tracking-widest text-indigo-700 font-serif">
               The Hotel
@@ -409,9 +409,9 @@ export default function Home() {
         </div>
       </section>
       .{/* Rooms */}
-      <section className="container mx-auto py-5 border-gray-200">
+      <section className="container mx-auto my-5  border-gray-200">
         <div className="flex flex-col ">
-          <div className="w-full flex flex-col items-center text-center py-10">
+          <div className="w-full flex flex-col items-center text-center py-5">
             <span className="text-lg font-semibold text-gray-600">
               The pleasure of Luxury{" "}
             </span>
@@ -430,7 +430,7 @@ export default function Home() {
         </div>
       </section>
       {/* Resort */}
-      <section className="container mx-auto my-15 ">
+      <section className="container mx-auto my-5 ">
         <div className="flex relative">
           <img
             src="/images/bg-2.png"
@@ -602,7 +602,7 @@ export default function Home() {
         </div>
       </section>
       {/* Testimonial */}
-      <section className="container mx-auto py-16 bg-gray-50">
+      <section className="container mx-auto my-5 bg-gray-50">
         <div className="container  mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <small className="uppercase text-yellow-500 font-bold tracking-wide">
@@ -625,7 +625,7 @@ export default function Home() {
         </div>
       </section>
       {/* Book Room */}
-      <section className="container mx-auto py-16 bg-gray-200 rounded">
+      <section className="container mx-auto my-5 py-5 bg-gray-200 rounded">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-20 ">
             {/* Left Column - Booking Form */}
@@ -753,7 +753,7 @@ export default function Home() {
         </div>
       </section>
       {/* Blogs*/}
-      <section className="container mx-auto py-20 bg-gray-100 mt-5">
+      <section className="container mx-auto py-10 bg-gray-100 mt-5">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="inline-block text-gray-600 font-semibold mb-2">

@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ClientHeader from "./home/clientHeader";
 import { useState } from "react";
+import { Menu, X } from "lucide-react"; // Added Lucide icons
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -14,7 +15,7 @@ const Header = () => {
         <div className="flex items-center justify-center pl-10">
           <Link href="/">
             <Image
-              src="/images/logo.png" // or "logo.png" if that's your file
+              src="/images/logo.png"
               alt="Hilaac Hotel Logo"
               width={30}
               height={30}
@@ -22,11 +23,9 @@ const Header = () => {
             />
           </Link>
           <Link href={"/"} className="text-2xl">
-            {/* Show only 'H' on small screens */}
             <span className="font-extrabold text-[32px] text-amber-600 font-serif tracking-normal italic block md:hidden">
               Hilaac
             </span>
-            {/* Show 'H hotel' on larger screens */}
             <span className="hidden md:block">
               <span className="font-extrabold text-[32px] text-amber-600 font-serif tracking-normal italic">
                 H{" "}
@@ -36,7 +35,7 @@ const Header = () => {
           </Link>
         </div>
 
-        {/* Navigation Menu */}
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-4">
           <Link href={"/"} className="nav_links">
             Home
@@ -55,26 +54,27 @@ const Header = () => {
           </Link>
         </nav>
 
-        {/* Client Header */}
         <ClientHeader />
 
         {/* Mobile Menu Toggle */}
-
-        <div className="md:hidden flex justify-end">
+        <div className="md:hidden">
           <button
-            className="text-amber-700 font-bold hover:text-[#f27405] transition-all duration-300"
-            aria-label="Open Menu"
+            className="text-amber-700 hover:text-[#f27405] transition-all duration-300 p-2"
+            aria-label={isMobileMenuOpen ? "Close Menu" : "Open Menu"}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            ☰
+            {isMobileMenuOpen ? (
+              <X className="h-6 w-6" /> // Close icon
+            ) : (
+              <Menu className="h-6 w-6" /> // Hamburger icon
+            )}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
-
       {isMobileMenuOpen && (
-        <div className=" md:hidden bg-amber-300 p-4 fixed top-10 left-0 right-0 z-50 flex justify-between transition-all duration-300">
+        <div className="md:hidden bg-amber-300 p-4 fixed top-10 left-0 right-0 z-60 flex justify-between transition-all duration-300">
           <nav className="flex flex-col gap-4 items-start dark:text-black">
             <Link
               href={"/"}
@@ -113,7 +113,6 @@ const Header = () => {
             </Link>
           </nav>
 
-          {/* Authentication Links */}
           <div>
             <ClientHeader isMobile setIsMobileMenuOpen={setIsMobileMenuOpen} />
           </div>

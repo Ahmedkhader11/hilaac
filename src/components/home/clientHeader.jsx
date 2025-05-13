@@ -20,7 +20,7 @@ const ClientHeader = ({ isMobile = false, setIsMobileMenuOpen = () => {} }) => {
       {isSignedIn && user?.publicMetadata?.role === "admin" && (
         <Link
           href="/admin"
-          className="px-2 py-2 font-bold text-black bg-white rounded-sm"
+          className="px-2 py-2 font-bold text-black bg-white rounded-sm ring hover:rounded-full"
           onClick={() => setIsMobileMenuOpen(false)}
         >
           Dashboard
