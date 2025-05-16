@@ -134,7 +134,7 @@ export default function AdminLayout({ children }) {
             {/* Notification & Profile */}
             <div className="relative">
               <button
-                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors cursor-pointer"
+                className="p-2  mr-6 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors cursor-pointer"
                 onClick={() => setShowNotifications(!showNotifications)}
               >
                 <span className="sr-only">Notifications</span>
