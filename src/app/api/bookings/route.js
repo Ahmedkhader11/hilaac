@@ -91,3 +91,31 @@ export async function POST(req) {
     );
   }
 }
+
+// GET request
+export async function GET() {
+  try {
+    await db();
+    const bookings = await Booking.find({}).lean();
+
+    const updatedBookings = bookings.map(({ _id, __v, ...booking }) => ({
+      id: _id.toString(), // Convert MongoDB ObjectID to string
+      booked: true, // Since it's already in the bookings collection
+      ...booking,
+    }));
+
+    return new NextResponse(JSON.stringify(updatedBookings), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    console.error("Failed to fetch bookings:", error);
+    return new NextResponse(
+      JSON.stringify({ error: "Internal Server Error" }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+  }
+}
