@@ -1,6 +1,6 @@
 import { clerkClient } from "@clerk/nextjs/server";
 import db from "@/utils/db";
-import User from "@/models/User";
+import User from "@/modals/User";
 
 export async function POST(req) {
   try {
