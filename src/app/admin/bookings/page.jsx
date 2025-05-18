@@ -1,13 +1,11 @@
-// src/app/admin/bookings/page.jsx
 import db from "@/utils/db";
 import Booking from "@/modals/Bookings";
-import BookingActionButtons from "./BookingActionButtons";
+import BookingActionButtons from "./BookingActionButtons"; // Import the client component
 
 export default async function BookingsAdmin() {
   await db();
   let bookings = await Booking.find({}).lean();
 
-  // Convert Mongoose-specific fields to plain objects
   bookings = bookings.map((booking) => ({
     ...booking,
     _id: booking._id.toString(),
@@ -37,7 +35,6 @@ export default async function BookingsAdmin() {
               <th className="px-4 py-2">Cus.Name</th>
               <th className="px-4 py-2">Room</th>
               <th className="px-4 py-2">Dates</th>
-              <th className="px-4 py-2">Status</th>
               <th className="px-4 py-2">Actions</th>
             </tr>
           </thead>
@@ -58,7 +55,6 @@ export default async function BookingsAdmin() {
                   {new Date(booking.startDate).toLocaleDateString()} -{" "}
                   {new Date(booking.endDate).toLocaleDateString()}
                 </td>
-                <td className="border px-4 py-2 text-sm">{booking.status}</td>
                 <td className="border px-4 py-2 text-sm">
                   <BookingActionButtons bookingId={booking._id} />
                 </td>
