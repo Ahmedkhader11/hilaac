@@ -7,71 +7,75 @@ export default async function Admin() {
   const users = (await client.users.getUserList()).data;
 
   return (
-    <div className="container mx-auto px-4 py-4 ring">
-      <table className="w-full border-collapse border border-gray-300">
-        <thead>
-          <tr className="bg-indigo-500 text-white">
-            <th className="border border-gray-300 px-4 py-2">Name</th>
-            <th className="border border-gray-300 px-4 py-2">Email</th>
-            <th className="border border-gray-300 px-4 py-2">Role</th>
-            <th className="border border-gray-300 px-4 py-2">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user, index) => (
-            <tr
-              key={user.id}
-              className={`${
-                index % 2 === 0 ? "bg-indigo-100" : "bg-indigo-200"
-              } text-gray-800`}
-            >
-              <td className="border border-gray-300 px-4 py-2">
-                {user.firstName} {user.lastName}
-              </td>
-              <td className="border border-gray-300 px-4 py-2">
-                {
-                  user.emailAddresses.find(
-                    (email) => email.id === user.primaryEmailAddressId
-                  )?.emailAddress
-                }
-              </td>
-              <td className="border border-gray-300 px-4 py-2">
-                {user.publicMetadata.role || "user"}
-              </td>
-              <td className="border border-gray-300 px-4 py-2 space-x-2">
-                <form action={setRole} className="inline">
-                  <input type="hidden" value={user.id} name="id" />
-                  <input type="hidden" value="admin" name="role" />
-                  <button
-                    type="submit"
-                    className="px-3 py-1 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded transition-colors cursor-pointer"
-                  >
-                    Make Admin
-                  </button>
-                </form>
-                <form action={removeRole} className="inline">
-                  <input type="hidden" value={user.id} name="id" />
-                  <button
-                    type="submit"
-                    className="px-3 py-1 text-sm font-medium text-white bg-gray-800 hover:bg-gray-900 rounded transition-colors cursor-pointer"
-                  >
-                    Remove Role
-                  </button>
-                </form>
-                <form action={deleteUser} className="inline">
-                  <input type="hidden" value={user.id} name="id" />
-                  <button
-                    type="submit"
-                    className="px-3 py-1 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded transition-colors cursor-pointer"
-                  >
-                    Delete
-                  </button>
-                </form>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="container mx-auto px-2 py-4 ring">
+      {/* Header Section (Hidden on small screens) */}
+      <div className="hidden md:grid grid-cols-4 gap-4 bg-indigo-500 text-white p-4 rounded-md text-lg font-semibold">
+        <div>Name</div>
+        <div>Email</div>
+        <div>Role</div>
+        <div>Actions</div>
+      </div>
+
+      {users.map((user, index) => (
+        <div
+          key={user.id}
+          className={`grid grid-cols-1 md:grid-cols-4 gap-4 items-center px-2 py-2  my-2 rounded-sm shadow transition-colors ${
+            index % 2 === 0
+              ? "bg-indigo-100 dark:bg-indigo-500"
+              : "bg-indigo-200 dark:bg-indigo-400"
+          }`}
+        >
+          {/* Name */}
+          <div className=" md:border-r-2 md:border-r-white break-words md:whitespace-normal text-lg font-semibold text-gray-800 dark:text-gray-100">
+            {user.firstName} {user.lastName}
+          </div>
+
+          <div className="text-sm md:border-r-2 md:border-r-white text-gray-600 dark:text-gray-300 break-words md:whitespace-normal">
+            {
+              user.emailAddresses.find(
+                (email) => email.id === user.primaryEmailAddressId
+              )?.emailAddress
+            }
+          </div>
+
+          {/* Role */}
+          <div className="text-sm md:border-r-2 md:border-r-white text-gray-600 dark:text-gray-300">
+            {user.publicMetadata.role || "user"}
+          </div>
+
+          {/* Actions */}
+          <div className="flex flex-wrap gap-2">
+            <form action={setRole}>
+              <input type="hidden" value={user.id} name="id" />
+              <input type="hidden" value="admin" name="role" />
+              <button
+                type="submit"
+                className="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded transition-colors"
+              >
+                Make Admin
+              </button>
+            </form>
+            <form action={removeRole}>
+              <input type="hidden" value={user.id} name="id" />
+              <button
+                type="submit"
+                className="px-4 py-2 text-sm font-medium text-white bg-gray-800 hover:bg-gray-900 rounded transition-colors"
+              >
+                Remove Role
+              </button>
+            </form>
+            <form action={deleteUser}>
+              <input type="hidden" value={user.id} name="id" />
+              <button
+                type="submit"
+                className="px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded transition-colors"
+              >
+                Delete
+              </button>
+            </form>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
