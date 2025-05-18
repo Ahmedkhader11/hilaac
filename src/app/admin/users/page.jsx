@@ -1,5 +1,5 @@
 import { clerkClient } from "@clerk/nextjs/server";
-import { setRole, removeRole } from "../actions";
+import { setRole, removeRole, deleteUser } from "../actions"; // Import the new action
 
 export default async function Admin() {
   // Fetch the list of users from Clerk.
@@ -11,7 +11,7 @@ export default async function Admin() {
       {users.map((user, index) => (
         <div
           key={user.id}
-          className={`flex flex-col md:flex-row items-center justify-between gap-4 p-6 my-2 rounded-sm shadow transition-colors 
+          className={`flex flex-col md:flex-row items-center justify-between gap-4 p-6 my-2 rounded-sm shadow transition-colors
             ${
               index % 2 === 0
                 ? "bg-indigo-100 dark:bg-indigo-500"
@@ -44,23 +44,22 @@ export default async function Admin() {
                 Make Admin
               </button>
             </form>
-            <form action={setRole} className="inline">
-              <input type="hidden" value={user.id} name="id" />
-              <input type="hidden" value="moderator" name="role" />
-              <button
-                type="submit"
-                className="px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded transition-colors cursor-pointer"
-              >
-                Make Moderator
-              </button>
-            </form>
             <form action={removeRole} className="inline">
               <input type="hidden" value={user.id} name="id" />
               <button
                 type="submit"
-                className="px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded transition-colors cursor-pointer"
+                className="px-4 py-2 text-sm font-medium text-white bg-gray-800 hover:bg-gray-900 rounded transition-colors cursor-pointer"
               >
                 Remove Role
+              </button>
+            </form>
+            <form action={deleteUser} className="inline">
+              <input type="hidden" value={user.id} name="id" />
+              <button
+                type="submit"
+                className="px-4 py-2 text-sm font-medium text-white  bg-red-600 hover:bg-red-700  rounded transition-colors cursor-pointer"
+              >
+                Delete
               </button>
             </form>
           </div>

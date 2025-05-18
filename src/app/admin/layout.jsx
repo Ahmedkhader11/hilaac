@@ -89,6 +89,7 @@ export default function AdminLayout({ children }) {
               <Link
                 href={link.href}
                 key={link.href}
+                onClick={() => setIsSidebarOpen(false)}
                 className={`flex items-center gap-3 px-4 py-2 rounded-lg transition-all ${
                   pathname === link.href
                     ? "bg-blue-600/80 text-white"
@@ -134,7 +135,7 @@ export default function AdminLayout({ children }) {
             {/* Notification & Profile */}
             <div className="relative">
               <button
-                className="p-2  mr-6 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors cursor-pointer"
+                className="p-2 pb-4  mr-5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors cursor-pointer"
                 onClick={() => setShowNotifications(!showNotifications)}
               >
                 <span className="sr-only">Notifications</span>
