@@ -19,7 +19,7 @@ export default async function Admin() {
       {users.map((user, index) => (
         <div
           key={user.id}
-          className={`grid grid-cols-1 md:grid-cols-4 gap-4 items-center px-2 py-2  my-2 rounded-sm shadow transition-colors ${
+          className={`grid grid-cols-1 md:grid-cols-4 gap-2.5 items-center px-2 py-2  my-2 rounded-sm shadow transition-colors ${
             index % 2 === 0
               ? "bg-indigo-100 dark:bg-indigo-500"
               : "bg-indigo-200 dark:bg-indigo-400"
@@ -39,18 +39,18 @@ export default async function Admin() {
           </div>
 
           {/* Role */}
-          <div className="text-sm md:border-r-2 md:border-r-white text-gray-600 dark:text-gray-300">
+          <div className="text-sm md:border-r-2 md:border-r-white text-gray-600 dark:text-gray-300 ">
             {user.publicMetadata.role || "user"}
           </div>
 
           {/* Actions */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 ">
             <form action={setRole}>
               <input type="hidden" value={user.id} name="id" />
               <input type="hidden" value="admin" name="role" />
               <button
                 type="submit"
-                className="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded transition-colors"
+                className="px-2 cursor-pointer py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded transition-colors"
               >
                 Make Admin
               </button>
@@ -59,7 +59,7 @@ export default async function Admin() {
               <input type="hidden" value={user.id} name="id" />
               <button
                 type="submit"
-                className="px-4 py-2 text-sm font-medium text-white bg-gray-800 hover:bg-gray-900 rounded transition-colors"
+                className="px-2 cursor-pointer py-2 text-sm font-medium text-white bg-gray-800 hover:bg-gray-900 rounded transition-colors"
               >
                 Remove Role
               </button>
@@ -68,7 +68,7 @@ export default async function Admin() {
               <input type="hidden" value={user.id} name="id" />
               <button
                 type="submit"
-                className="px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded transition-colors"
+                className="px-2 cursor-pointer py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded transition-colors"
               >
                 Delete
               </button>
