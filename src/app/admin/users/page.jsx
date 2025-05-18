@@ -8,63 +8,70 @@ export default async function Admin() {
 
   return (
     <div className="container mx-auto px-4 py-4 ring">
-      {users.map((user, index) => (
-        <div
-          key={user.id}
-          className={`flex flex-col md:flex-row items-center justify-between gap-4 p-6 my-2 rounded-sm shadow transition-colors
-            ${
-              index % 2 === 0
-                ? "bg-indigo-100 dark:bg-indigo-500"
-                : "bg-indigo-200 dark:bg-indigo-400"
-            }`}
-        >
-          <div className="flex flex-col sm:flex-row items-center gap-4">
-            <div className="text-lg font-semibold text-gray-800 dark:text-gray-100">
-              {user.firstName} {user.lastName}
-            </div>
-            <div className="text-sm text-gray-600 dark:text-gray-300">
-              {
-                user.emailAddresses.find(
-                  (email) => email.id === user.primaryEmailAddressId
-                )?.emailAddress
-              }
-            </div>
-            <div className="text-sm text-gray-600 dark:text-gray-300">
-              {user.publicMetadata.role || "user"}
-            </div>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            <form action={setRole} className="inline">
-              <input type="hidden" value={user.id} name="id" />
-              <input type="hidden" value="admin" name="role" />
-              <button
-                type="submit"
-                className="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded transition-colors cursor-pointer"
-              >
-                Make Admin
-              </button>
-            </form>
-            <form action={removeRole} className="inline">
-              <input type="hidden" value={user.id} name="id" />
-              <button
-                type="submit"
-                className="px-4 py-2 text-sm font-medium text-white bg-gray-800 hover:bg-gray-900 rounded transition-colors cursor-pointer"
-              >
-                Remove Role
-              </button>
-            </form>
-            <form action={deleteUser} className="inline">
-              <input type="hidden" value={user.id} name="id" />
-              <button
-                type="submit"
-                className="px-4 py-2 text-sm font-medium text-white  bg-red-600 hover:bg-red-700  rounded transition-colors cursor-pointer"
-              >
-                Delete
-              </button>
-            </form>
-          </div>
-        </div>
-      ))}
+      <table className="w-full border-collapse border border-gray-300">
+        <thead>
+          <tr className="bg-indigo-500 text-white">
+            <th className="border border-gray-300 px-4 py-2">Name</th>
+            <th className="border border-gray-300 px-4 py-2">Email</th>
+            <th className="border border-gray-300 px-4 py-2">Role</th>
+            <th className="border border-gray-300 px-4 py-2">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((user, index) => (
+            <tr
+              key={user.id}
+              className={`${
+                index % 2 === 0 ? "bg-indigo-100" : "bg-indigo-200"
+              } text-gray-800`}
+            >
+              <td className="border border-gray-300 px-4 py-2">
+                {user.firstName} {user.lastName}
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                {
+                  user.emailAddresses.find(
+                    (email) => email.id === user.primaryEmailAddressId
+                  )?.emailAddress
+                }
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                {user.publicMetadata.role || "user"}
+              </td>
+              <td className="border border-gray-300 px-4 py-2 space-x-2">
+                <form action={setRole} className="inline">
+                  <input type="hidden" value={user.id} name="id" />
+                  <input type="hidden" value="admin" name="role" />
+                  <button
+                    type="submit"
+                    className="px-3 py-1 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded transition-colors cursor-pointer"
+                  >
+                    Make Admin
+                  </button>
+                </form>
+                <form action={removeRole} className="inline">
+                  <input type="hidden" value={user.id} name="id" />
+                  <button
+                    type="submit"
+                    className="px-3 py-1 text-sm font-medium text-white bg-gray-800 hover:bg-gray-900 rounded transition-colors cursor-pointer"
+                  >
+                    Remove Role
+                  </button>
+                </form>
+                <form action={deleteUser} className="inline">
+                  <input type="hidden" value={user.id} name="id" />
+                  <button
+                    type="submit"
+                    className="px-3 py-1 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded transition-colors cursor-pointer"
+                  >
+                    Delete
+                  </button>
+                </form>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
