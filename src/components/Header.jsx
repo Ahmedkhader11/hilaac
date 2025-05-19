@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <header>
       <div className="header">
-        <div className="flex items-center justify-center pl-10">
+        <div className="flex items-center justify-center pl-4 md:pl-10">
           <Link href="/">
             <Image
               src="/images/logo.png"
