@@ -23,7 +23,7 @@ export default async function DashboardHome() {
       {/* Metrics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow">
-          <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-300">
+          <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-300 tracking-wider">
             Total Users
           </h2>
           <p className="mt-2 text-3xl text-gray-800 dark:text-gray-100">
@@ -31,7 +31,7 @@ export default async function DashboardHome() {
           </p>
         </div>
         <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow">
-          <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-300">
+          <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-300 tracking-wider">
             Total Bookings
           </h2>
           <p className="mt-2 text-3xl text-gray-800 dark:text-gray-100">
