@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
 
 const BookingSchema = new mongoose.Schema({
+  userId: {
+    type: String,
+    required: true, // ✅ Associate each booking with a user
+    index: true, // ✅ Optimize queries on userId
+  },
   room: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Room",
@@ -45,11 +50,7 @@ const BookingSchema = new mongoose.Schema({
     },
     required: true,
   },
-  status: {
-    type: String,
-    enum: ["Pending", "Confirmed", "Cancelled"],
-    default: "Pending",
-  },
+
   createdAt: {
     type: Date,
     default: Date.now,
@@ -60,8 +61,8 @@ const BookingSchema = new mongoose.Schema({
   },
 });
 
-// Add index for common queries
-BookingSchema.index({ room: 1, startDate: 1, endDate: 1 });
+// ✅ Add index for common queries, including userId
+BookingSchema.index({ userId: 1, room: 1, startDate: 1, endDate: 1 });
 
 const Booking =
   mongoose.models.Booking || mongoose.model("Booking", BookingSchema);

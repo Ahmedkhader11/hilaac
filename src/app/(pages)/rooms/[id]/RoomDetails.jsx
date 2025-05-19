@@ -1,23 +1,35 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
 
 export default function RoomDetails() {
+  const { user } = useUser();
   const { id } = useParams();
   const router = useRouter();
   const [room, setRoom] = useState(null);
   const [bookingData, setBookingData] = useState({
+    userId: user?.id || "",
     name: "",
     email: "",
     phone: "",
     startDate: new Date(),
-    endDate: new Date(),
+    endDate: new Date(new Date().setDate(new Date().getDate() + 1)),
     guests: "",
     paymentMethod: "",
   });
 
   useEffect(() => {
     if (!id) return;
+
+    if (user) {
+      setBookingData((prev) => ({
+        ...prev,
+        userId: user.id, //
+        name: user.fullName || "",
+        email: user.emailAddresses[0]?.emailAddress || "",
+      }));
+    }
 
     const fetchRoom = async () => {
       try {
@@ -34,12 +46,13 @@ export default function RoomDetails() {
     };
 
     fetchRoom();
-  }, [id]);
+  }, [id, user]);
 
   const handleBooking = async (e) => {
     e.preventDefault();
     try {
       const bookingPayload = {
+        userId: user.id,
         roomId: id,
         ...bookingData,
         startDate: bookingData.startDate.toISOString(),

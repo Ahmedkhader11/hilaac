@@ -53,6 +53,7 @@ async function handleUserUpsert(clerkUser) {
       clerkId: clerkUser.id,
       email: emailData?.email_address,
       name: `${clerkUser.first_name} ${clerkUser.last_name}`,
+      imageUrl: image_url,
       updatedAt: new Date(),
     },
     { upsert: true, new: true }

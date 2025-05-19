@@ -1,14 +1,39 @@
 "use client";
-
 import { UserButton, useUser } from "@clerk/nextjs";
 import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import ThemeContext from "@/context/theme";
 
 const ClientHeader = ({ isMobile = false, setIsMobileMenuOpen = () => {} }) => {
   const { darkTheme, setDarkTheme } = useContext(ThemeContext);
   const { user, isSignedIn } = useUser();
+  const [userRole, setUserRole] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      if (!user) return;
+      setError(null);
+
+      try {
+        const res = await fetch(`/api/users/${user.id}`);
+        console.log(res);
+        if (!res.ok) {
+          const errorData = await res.json();
+          throw new Error(errorData?.error || `Server error: ${res.status}`);
+        }
+
+        const data = await res.json();
+        setUserRole(data.role || "user");
+      } catch (error) {
+        console.error("Error fetching user role:", error);
+        setError(error.message);
+      }
+    };
+
+    fetchUserRole();
+  }, [user]);
 
   return (
     <div
@@ -16,16 +41,32 @@ const ClientHeader = ({ isMobile = false, setIsMobileMenuOpen = () => {} }) => {
         isMobile ? "flex flex-col gap-y-3" : "hidden md:flex"
       } items-center md:gap-1 md:flex-nowrap`}
     >
-      {/* Dashboard Link (visible only for admin users) */}
-      {isSignedIn && user?.publicMetadata?.role === "admin" && (
-        <Link
-          href="/admin"
-          className="px-2 py-2 font-bold text-black bg-white rounded-sm ring hover:rounded-full"
-          onClick={() => setIsMobileMenuOpen(false)}
-        >
-          Dashboard
-        </Link>
+      {/* Show "Dashboard" if Admin, "Profile" if Tenant */}
+      {isSignedIn && (
+        <>
+          {userRole === "admin" && (
+            <Link
+              href="/admin"
+              className="px-2 py-2 font-bold text-black bg-white rounded-sm ring hover:rounded-full"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Dashboard
+            </Link>
+          )}
+          {userRole === "user" && (
+            <Link
+              href="/profile"
+              className="px-4 py-1 tracking-widest text-black bg-white rounded-sm ring hover:rounded-full"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Profile
+            </Link>
+          )}
+        </>
       )}
+
+      {/* Error Message */}
+      {error && <div className="text-red-500 text-sm mb-2">{error}</div>}
 
       {/* Dark Mode Toggle */}
       <button
@@ -33,9 +74,7 @@ const ClientHeader = ({ isMobile = false, setIsMobileMenuOpen = () => {} }) => {
         onClick={() => {
           const newTheme = !darkTheme;
           setDarkTheme(newTheme);
-          // localStorage.setItem("darkTheme", newTheme ? "true" : "");
           localStorage.setItem("darkTheme", JSON.stringify(newTheme));
-
           setIsMobileMenuOpen(false);
         }}
       >

@@ -9,6 +9,7 @@ export async function POST(req) {
 
     const body = await req.json();
     const {
+      userId,
       roomId,
       name,
       email,
@@ -19,7 +20,9 @@ export async function POST(req) {
       paymentMethod,
     } = body;
 
+    // Validate required fields
     if (
+      !userId ||
       !roomId ||
       !name ||
       !email ||
@@ -35,6 +38,7 @@ export async function POST(req) {
       );
     }
 
+    // Lookup room by custom 'id' field
     const room = await Room.findOne({ id: roomId });
     if (!room) {
       return new NextResponse(JSON.stringify({ error: "Room not found" }), {
@@ -42,7 +46,7 @@ export async function POST(req) {
       });
     }
 
-    // Check if room is already booked during the requested period
+    // Check if the room is already booked during the requested period
     const isBooked = await Booking.findOne({
       room: room._id,
       $or: [
@@ -65,7 +69,8 @@ export async function POST(req) {
 
     // Create and save the new booking
     const newBooking = new Booking({
-      room: room._id,
+      userId: userId, // Store user ID to link the booking with the authenticated user
+      room: room._id, // Save the actual MongoDB _id of the room
       name,
       email,
       phone,
@@ -73,6 +78,7 @@ export async function POST(req) {
       endDate: new Date(endDate),
       guests: String(guests),
       paymentMethod,
+      status: "Pending",
     });
 
     await newBooking.save();
@@ -85,6 +91,7 @@ export async function POST(req) {
       { status: 201 }
     );
   } catch (error) {
+    console.error("Booking API Error:", error);
     return new NextResponse(
       JSON.stringify({ error: "Booking failed: " + error.message }),
       { status: 500 }
@@ -92,7 +99,7 @@ export async function POST(req) {
   }
 }
 
-// GET request
+// GET request to list all bookings
 export async function GET() {
   try {
     await db();
@@ -100,7 +107,7 @@ export async function GET() {
 
     const updatedBookings = bookings.map(({ _id, __v, ...booking }) => ({
       id: _id.toString(), // Convert MongoDB ObjectID to string
-      booked: true, // Since it's already in the bookings collection
+      booked: true, // Mark as booked since it's in the bookings collection
       ...booking,
     }));
 
