@@ -1,30 +1,28 @@
-"use client";
-import { useEffect, useState } from "react";
-import BookingActionButtons from "./BookingActionButtons";
+import db from "@/utils/db";
+import Booking from "@/modals/Bookings";
+import BookingActionButtons from "./BookingActionButtons"; // Import the client component
 
-export default function BookingsAdmin() {
-  const [bookings, setBookings] = useState([]);
-  const [loading, setLoading] = useState(true);
+export const dynamic = "force-dynamic";
 
-  useEffect(() => {
-    const fetchBookings = async () => {
-      try {
-        const response = await fetch("/api/admin/bookings");
-        const data = await response.json();
-        setBookings(data.bookings);
-      } catch (error) {
-        console.error("Error fetching bookings:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+export default async function BookingsAdmin() {
+  await db();
+  let bookings = await Booking.find({}).lean();
 
-    fetchBookings();
-  }, []);
-
-  if (loading) {
-    return <p className="text-center text-gray-500">Loading bookings...</p>;
-  }
+  bookings = bookings.map((booking) => ({
+    ...booking,
+    _id: booking._id.toString(),
+    room: booking.room ? booking.room.toString() : null,
+    startDate: booking.startDate
+      ? new Date(booking.startDate).toISOString()
+      : null,
+    endDate: booking.endDate ? new Date(booking.endDate).toISOString() : null,
+    createdAt: booking.createdAt
+      ? new Date(booking.createdAt).toISOString()
+      : null,
+    updatedAt: booking.updatedAt
+      ? new Date(booking.updatedAt).toISOString()
+      : null,
+  }));
 
   return (
     <div className="container mx-auto py-8">
