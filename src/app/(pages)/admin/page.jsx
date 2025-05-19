@@ -2,6 +2,8 @@ import db from "@/utils/db";
 import Booking from "@/modals/Bookings";
 import User from "@/modals/User";
 
+export const dynamic = "force-dynamic";
+
 export default async function DashboardHome() {
   // Connect to the database
   await db();
