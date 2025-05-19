@@ -9,5 +9,7 @@ const UserSchema = new mongoose.Schema({
   updatedAt: { type: Date, default: Date.now },
 });
 
+UserSchema.index({ clerkId: 1, email: 1 });
+
 const User = mongoose.models.User || mongoose.model("User", UserSchema);
 export default User;

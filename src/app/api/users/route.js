@@ -1,27 +1,39 @@
 import { NextResponse } from "next/server";
-import { createClerkClient } from "@clerk/clerk-sdk-node";
+import { clerkClient } from "@clerk/nextjs/server";
 import db from "@/utils/db";
 import User from "@/modals/User";
 
-const clerkClient = createClerkClient({
-  secretKey: process.env.CLERK_SECRET_KEY,
-});
-
 export async function POST(request) {
   try {
-    const body = await request.json();
-    const { userId } = body;
+    // Get Clerk authentication headers
+    const headersList = request.headers;
+    const clerkAuthHeader = headersList.get("Authorization"); // Extract Bearer Token
 
-    if (!userId) {
+    if (!clerkAuthHeader || !clerkAuthHeader.startsWith("Bearer ")) {
       return NextResponse.json(
-        { message: "User ID is required" },
-        { status: 400 }
+        { message: "Missing or invalid Clerk token" },
+        { status: 401 }
+      );
+    }
+
+    const userToken = clerkAuthHeader.replace("Bearer ", "");
+
+    // Validate token and extract user details
+    let userId;
+    try {
+      const clerkAuthData = await clerkClient.verifyToken(userToken);
+      userId = clerkAuthData.sub; // `sub` contains the authenticated user ID
+    } catch (error) {
+      console.error("Clerk Token Verification Failed:", error);
+      return NextResponse.json(
+        { message: "Invalid Clerk token" },
+        { status: 401 }
       );
     }
 
     await db();
 
-    // Fetch user from Clerk with improved error handling
+    // Fetch user from Clerk
     let clerkUser;
     try {
       clerkUser = await clerkClient.users.getUser(userId);
@@ -39,7 +51,7 @@ export async function POST(request) {
       );
     }
 
-    // Upsert into MongoDB
+    // Upsert user into MongoDB
     const updatedUser = await User.findOneAndUpdate(
       { clerkId: clerkUser.id },
       {
@@ -54,11 +66,11 @@ export async function POST(request) {
     );
 
     return NextResponse.json(
-      { message: "User upserted successfully", user: updatedUser },
+      { message: "User synced successfully", user: updatedUser },
       { status: 200 }
     );
   } catch (error) {
-    console.error("Error upserting user:", error);
+    console.error("Error syncing user:", error);
     return NextResponse.json(
       { message: "Internal Server Error" },
       { status: 500 }
