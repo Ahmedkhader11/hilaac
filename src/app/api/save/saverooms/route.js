@@ -1,6 +1,6 @@
 // API endpoint (rooms/route.js)
 import db from "@/utils/db";
-import Room from "@/modals/roomSchema";
+import Room from "@/models/roomSchema";
 
 const JSON_HEADERS = {
   "Content-Type": "application/json",

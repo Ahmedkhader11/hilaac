@@ -1,6 +1,6 @@
 import db from "@/utils/db";
-import Booking from "@/modals/Bookings";
-import Room from "@/modals/roomSchema";
+import Booking from "@/models/Bookings";
+import Room from "@/models/roomSchema";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {

@@ -1,6 +1,6 @@
 import db from "@/utils/db";
-import Booking from "@/modals/Bookings";
-import User from "@/modals/User";
+import Booking from "@/models/Bookings";
+import User from "@/models/User";
 
 export const dynamic = "force-dynamic";
 

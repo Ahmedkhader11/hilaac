@@ -1,7 +1,7 @@
 "use server";
 import { clerkClient } from "@clerk/nextjs/server";
 import db from "@/utils/db";
-import User from "@/modals/User";
+import User from "@/models/User";
 import { revalidatePath } from "next/cache";
 
 export async function setRole(formData) {

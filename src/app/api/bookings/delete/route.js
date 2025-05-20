@@ -1,6 +1,6 @@
 // src/app/api/bookings/delete/route.js
 import db from "@/utils/db";
-import Booking from "@/modals/Bookings";
+import Booking from "@/models/Bookings";
 import { revalidatePath } from "next/cache";
 
 export async function DELETE(request) {

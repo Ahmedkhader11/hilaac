@@ -1,4 +1,4 @@
-import Testimonials from "@/modals/testimonialShemal";
+import Testimonials from "@/models/testimonialShemal";
 import db from "@/utils/db";
 import { NextResponse } from "next/server";
 

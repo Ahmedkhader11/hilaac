@@ -1,5 +1,5 @@
 import db from "@/utils/db";
-import Booking from "@/modals/Bookings";
+import Booking from "@/models/Bookings";
 import { NextResponse } from "next/server";
 
 export async function GET(_request, { params }) {

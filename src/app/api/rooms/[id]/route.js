@@ -1,4 +1,4 @@
-import Room from "@/modals/roomSchema";
+import Room from "@/models/roomSchema";
 import db from "@/utils/db";
 import { NextResponse } from "next/server";
 

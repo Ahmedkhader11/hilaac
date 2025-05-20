@@ -1,5 +1,5 @@
 import db from "@/utils/db";
-import Booking from "@/modals/Bookings";
+import Booking from "@/models/Bookings";
 import BookingActionButtons from "./BookingActionButtons"; // Import the client component
 
 export const dynamic = "force-dynamic";

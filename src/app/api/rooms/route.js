@@ -1,5 +1,5 @@
-import Room from "@/modals/roomSchema";
-import Booking from "@/modals/Bookings";
+import Room from "@/models/roomSchema";
+import Booking from "@/models/Bookings";
 import db from "@/utils/db";
 import { NextResponse } from "next/server";
 
