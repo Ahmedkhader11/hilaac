@@ -34,7 +34,6 @@ export async function POST(req) {
     let evt;
     try {
       evt = wh.verify(JSON.stringify(payload), svixHeaders);
-      console.log("Svix Webhook Verified. Event Type:", evt.type); // Log successful verification
     } catch (svixVerifyError) {
       console.error("Svix Webhook Verification Failed:", svixVerifyError); // Log full error object
       throw new Error(
@@ -45,11 +44,9 @@ export async function POST(req) {
     switch (evt.type) {
       case "user.created":
       case "user.updated":
-        console.log(`Handling user upsert for Clerk ID: ${evt.data.id}`);
         await handleUserUpsert(evt.data);
         break;
       case "user.deleted":
-        console.log(`Handling user deletion for Clerk ID: ${evt.data.id}`);
         await handleUserDelete(evt.data.id);
         break;
       default:
@@ -59,10 +56,7 @@ export async function POST(req) {
 
     return new Response("Webhook processed", { status: 200 });
   } catch (err) {
-    console.error("--- Final Webhook Processing Error ---");
-    console.error("Error Object:", err); // <<<<<<< THIS IS CRUCIAL: Log the full error object
-    console.error("Error Message:", err.message);
-    console.error("---------------------------------------");
+    console.error("Error Object:", err);
 
     // Ensure we return a useful message, but avoid leaking too much internal detail if not in dev
     const errorMessage =
@@ -73,8 +67,6 @@ export async function POST(req) {
 
 async function handleUserUpsert(clerkUser) {
   try {
-    console.log("Starting handleUserUpsert for:", clerkUser.id);
-
     if (!clerkUser.id || !clerkUser.email_addresses?.length) {
       throw new Error(
         "Invalid user data: Missing Clerk ID or email addresses."
@@ -126,7 +118,6 @@ async function handleUserUpsert(clerkUser) {
 
 async function handleUserDelete(clerkUserId) {
   try {
-    console.log("Starting handleUserDelete for:", clerkUserId);
     const result = await User.deleteOne({ clerkId: clerkUserId });
     if (result.deletedCount === 0) {
       console.warn(`No user found to delete with clerkId: ${clerkUserId}`);
@@ -136,5 +127,25 @@ async function handleUserDelete(clerkUserId) {
   } catch (err) {
     console.error("Error inside handleUserDelete:", err); // Log full error object
     throw err;
+  }
+}
+
+export async function GET() {
+  try {
+    await db();
+
+    const users = await User.find({}).lean();
+
+    return new Response(JSON.stringify(users), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    console.error("Failed to fetch users:", error);
+
+    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 }

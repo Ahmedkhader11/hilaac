@@ -10,52 +10,48 @@ export default function ProfilePage() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Run fetches only if the user is available.
-    if (!user) return;
+    if (!user || !isSignedIn) return;
 
-    const fetchUserData = async () => {
+    const fetchData = async () => {
+      // Combine into one main async function
+      setLoading(true); // Set loading true at the start of the whole process
+      setError(null); // Clear previous errors
+
       try {
-        const res = await fetch(`/api/users/${user.id}`);
-        if (!res.ok) throw new Error("Failed to fetch user data");
-        const data = await res.json();
-        setUserData(data);
+        // --- Fetch User Data ---
+        const userRes = await fetch(`/api/users/${user.id}`);
+        if (!userRes.ok) throw new Error("Failed to fetch user data");
+        const userData = await userRes.json();
+        setUserData(userData);
 
-        // **Fetch bookings ONLY if bookingCount > 0**
-        if (data.bookingCount > 0) {
-          fetchBookings(data.bookingCount);
+        // --- Fetch Bookings ---
+        if (userData.bookingCount > 0) {
+          const bookingRes = await fetch(`/api/bookings/${user.id}`);
+          if (!bookingRes.ok) {
+            console.warn("No bookings found or error, returning empty list.");
+            setBookings([]);
+          } else {
+            const bookingData = await bookingRes.json();
+            setBookings(
+              Array.isArray(bookingData)
+                ? bookingData
+                : bookingData.bookings || []
+            );
+          }
         } else {
           setBookings([]); // No bookings, set empty array
         }
       } catch (err) {
-        console.error("Error fetching user data:", err);
-        setError("Error loading user data");
-      }
-    };
-
-    const fetchBookings = async (bookingCount) => {
-      try {
-        if (bookingCount === 0) return; // **Avoid unnecessary API call**
-
-        const res = await fetch(`/api/bookings/${user.id}`);
-        if (!res.ok) {
-          console.warn("No bookings found, returning empty list.");
-          setBookings([]);
-          return;
-        }
-
-        const data = await res.json();
-        setBookings(Array.isArray(data) ? data : data.bookings || []);
-      } catch (err) {
-        console.error("Error fetching bookings:", err);
-        setError("Error loading bookings");
+        console.error("Error fetching profile data:", err);
+        setError(err.message || "Error loading profile data."); // Use err.message for more detail
       } finally {
-        setLoading(false);
+        setLoading(false); // Always set loading to false when all fetches are done
       }
     };
 
-    fetchUserData();
-    fetchBookings();
-  }, [user]); // Run whenever the user is set or changes
+    fetchData();
+  }, [user, isSignedIn]); // isSignedIn can also be a dependency
+
   if (loading)
     return (
       <div className="container mx-auto flex flex-col items-center justify-center h-screen">

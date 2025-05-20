@@ -8,8 +8,6 @@ const UserSchema = new mongoose.Schema(
     role: { type: String, default: "user" },
     imageUrl: { type: String },
     bookingCount: { type: Number, default: 0 },
-    // createdAt: { type: Date, default: Date.now }, // <-- REMOVE OR COMMENT OUT
-    // updatedAt: { type: Date, default: Date.now }, // <-- REMOVE OR COMMENT OUT
   },
   { timestamps: true } // <-- This handles createdAt and updatedAt automatically
 );
