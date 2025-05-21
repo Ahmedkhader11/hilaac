@@ -39,7 +39,7 @@ const BookingSchema = new mongoose.Schema({
     },
   },
   guests: {
-    type: String,
+    type: Number,
     required: true,
   },
   paymentMethod: {
