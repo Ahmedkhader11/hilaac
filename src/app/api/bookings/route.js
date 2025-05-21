@@ -41,9 +41,7 @@ export async function POST(req) {
     }
 
     // Lookup room and ensure price exists
-    const room = await Room.findOne({
-      _id: new mongoose.Types.ObjectId(roomId),
-    });
+    const room = await Room.findById(roomId);
     if (!room || !room.price || typeof room.price !== "number") {
       return new NextResponse(
         JSON.stringify({ error: "Room price is not properly set" }),
@@ -59,10 +57,6 @@ export async function POST(req) {
     if (diffDays < 1) diffDays = 1; // Ensure minimum 1-day booking
 
     const totalPrice = room.price * diffDays;
-
-    console.log("DEBUG: Calculated totalPrice:", totalPrice);
-    console.log("DEBUG: Type of totalPrice:", typeof totalPrice);
-    console.log("DEBUG: Is totalPrice NaN?", isNaN(totalPrice)); //
 
     // Create and save the booking with price included
     const newBooking = new Booking({
