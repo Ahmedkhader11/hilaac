@@ -2,15 +2,10 @@
 
 export default function Loading() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="animate-spin rounded-full h-24 w-24 border-t-4 border-blue-600 mr-10"></div>
-      <div className="mt-6 text-center">
-        <h2 className="text-xl font-semibold text-gray-700">
-          Loading rooms...
-        </h2>
-        <p className="text-gray-500 mt-2">
-          Please wait while we retrieve the data.
-        </p>
+    <div className="flex justify-center items-center h-screen">
+      <div className="text-center">
+        <div className="w-12 h-12 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin mx-auto"></div>
+        <p className="mt-4 text-lg text-gray-600">Loading rooms... </p>
       </div>
     </div>
   );

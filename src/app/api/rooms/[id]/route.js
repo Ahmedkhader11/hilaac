@@ -7,7 +7,7 @@ export async function GET(_request, { params }) {
     await db();
     const { id } = await params;
 
-    const room = await Room.findOne({ id });
+    const room = await Room.findById(id);
 
     if (!room) {
       return new NextResponse(JSON.stringify({ error: "Room not found" }), {

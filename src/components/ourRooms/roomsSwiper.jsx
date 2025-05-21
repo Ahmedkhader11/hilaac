@@ -17,7 +17,7 @@ export default function RoomGrid({ rooms }) {
           {/* Image Section */}
           <div
             className="relative overflow-hidden rounded-lg cursor-pointer"
-            onClick={() => router.push(`/rooms/${room.id}`)} // Navigate when clicking the image
+            onClick={() => router.push(`/rooms/${room._id}`)} // Navigate when clicking the image
           >
             <Image
               src={room.image}
@@ -42,7 +42,7 @@ export default function RoomGrid({ rooms }) {
                       : "hover:bg-indigo-800"
                   }`}
                   onClick={() =>
-                    !room.booked && router.push(`/rooms/${room.id}`)
+                    !room.booked && router.push(`/rooms/${room._id}`)
                   } // Prevent booking action if booked
                 >
                   {room.booked ? "Booked" : "Book Now"}

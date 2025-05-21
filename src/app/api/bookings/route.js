@@ -41,7 +41,9 @@ export async function POST(req) {
     }
 
     // Lookup room and ensure price exists
-    const room = await Room.findOne({ id: roomId });
+    const room = await Room.findOne({
+      _id: new mongoose.Types.ObjectId(roomId),
+    });
     if (!room || !room.price || typeof room.price !== "number") {
       return new NextResponse(
         JSON.stringify({ error: "Room price is not properly set" }),

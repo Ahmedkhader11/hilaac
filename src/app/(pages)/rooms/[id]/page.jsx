@@ -7,6 +7,7 @@ async function getRoomData(id) {
     // await new Promise((resolve) => setTimeout(resolve, 5000));
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
     const res = await fetch(`${baseUrl}/api/rooms/${id}`);
+    console.log(res);
     if (!res.ok) {
       throw new Error(`Failed to fetch room (Status: ${res.status})`);
     }

@@ -12,15 +12,15 @@ export async function GET() {
 
     // Transform room data & check booked status
     const updatedRooms = await Promise.all(
-      rooms.map(async ({ _id, __v, ...room }) => {
+      rooms.map(async ({ __v, ...room }) => {
         const isBooked = await Booking.findOne({
-          room: _id,
+          room: room._id,
           startDate: { $lte: new Date() },
           endDate: { $gte: new Date() },
         });
 
         return {
-          id: _id.toString(), // Convert MongoDB ObjectID to string
+          id: room._id.toString(), // Convert MongoDB ObjectID to string
           booked: !!isBooked, // Boolean flag for booked status
           ...room,
         };

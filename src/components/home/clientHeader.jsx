@@ -2,38 +2,15 @@
 import { UserButton, useUser } from "@clerk/nextjs";
 import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import ThemeContext from "@/context/theme";
 
 const ClientHeader = ({ isMobile = false, setIsMobileMenuOpen = () => {} }) => {
   const { darkTheme, setDarkTheme } = useContext(ThemeContext);
   const { user, isSignedIn } = useUser();
-  const [userRole, setUserRole] = useState(null);
-  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchUserRole = async () => {
-      if (!user) return;
-      setError(null);
-
-      try {
-        const res = await fetch(`/api/users/${user.id}`);
-        console.log(res);
-        if (!res.ok) {
-          const errorData = await res.json();
-          throw new Error(errorData?.error || `Server error: ${res.status}`);
-        }
-
-        const data = await res.json();
-        setUserRole(data.role || "user");
-      } catch (error) {
-        console.error("Error fetching user role:", error);
-        setError(error.message);
-      }
-    };
-
-    fetchUserRole();
-  }, [user]);
+  // Get userRole directly from publicMetadata
+  const userRole = user?.publicMetadata?.role || "user";
 
   return (
     <div
@@ -64,9 +41,6 @@ const ClientHeader = ({ isMobile = false, setIsMobileMenuOpen = () => {} }) => {
           )}
         </>
       )}
-
-      {/* Error Message */}
-      {error && <div className="text-red-500 text-sm mb-2">{error}</div>}
 
       {/* Dark Mode Toggle */}
       <button
