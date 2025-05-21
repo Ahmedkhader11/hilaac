@@ -13,9 +13,8 @@ export default function ProfilePage() {
     if (!user || !isSignedIn) return;
 
     const fetchData = async () => {
-      // Combine into one main async function
-      setLoading(true); // Set loading true at the start of the whole process
-      setError(null); // Clear previous errors
+      setLoading(true);
+      setError(null);
 
       try {
         // --- Fetch User Data ---
@@ -39,22 +38,22 @@ export default function ProfilePage() {
             );
           }
         } else {
-          setBookings([]); // No bookings, set empty array
+          setBookings([]);
         }
       } catch (err) {
         console.error("Error fetching profile data:", err);
-        setError(err.message || "Error loading profile data."); // Use err.message for more detail
+        setError(err.message || "Error loading profile data.");
       } finally {
-        setLoading(false); // Always set loading to false when all fetches are done
+        setLoading(false);
       }
     };
 
     fetchData();
-  }, [user, isSignedIn]); // isSignedIn can also be a dependency
+  }, [user, isSignedIn]);
 
   if (loading)
     return (
-      <div className="container mx-auto flex flex-col items-center justify-center h-screen">
+      <div className="min-h-screen flex flex-col items-center justify-center p-4">
         <div className="relative flex items-center justify-center">
           <div className="w-12 h-12 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
         </div>
@@ -63,65 +62,81 @@ export default function ProfilePage() {
         </p>
       </div>
     );
-  if (error) return <p className=" container mx-auto p-6 mt-10">{error}</p>;
+  if (error)
+    return (
+      <div className="container mx-auto p-6 mt-10 text-red-600 text-center">
+        <p>{error}</p>
+      </div>
+    );
 
   return (
-    <div className="ring container mx-auto p-6 mt-10">
-      <h1 className="text-3xl font-bold mb-4">Profile</h1>
-      <div className="bg-white shadow rounded p-4">
-        <img
-          src={user?.imageUrl || "/default-avatar.jpg"}
-          alt="Profile"
-          className="w-24 h-24 rounded-full mb-4"
-        />
-        <p>
-          <strong>Name:</strong> {userData?.name}
-        </p>
-        <p>
-          <strong>Email:</strong> {userData?.email}
-        </p>
-        <p>
-          <strong>Role:</strong> {userData?.role}
-        </p>
+    <div className="container mx-auto p-6 mt-10">
+      {/* Profile Info Section */}
+      <div className="bg-white shadow rounded-lg p-6 mb-8 text-center sm:text-left">
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
+          <img
+            src={user?.imageUrl || "/default-avatar.jpg"}
+            alt="Profile"
+            className="w-24 h-24 rounded-full object-cover mb-4 sm:mb-0 sm:mr-4"
+          />
+          <div>
+            <h1 className="text-3xl font-bold mb-2">Profile</h1>
+            <p className="text-lg mb-1">
+              <strong>Name:</strong> {userData?.name}
+            </p>
+            <p className="text-lg mb-1">
+              <strong>Email:</strong> {userData?.email}
+            </p>
+            <p className="text-lg">
+              <strong>Role:</strong> {userData?.role}
+            </p>
+          </div>
+        </div>
       </div>
 
-      <h2 className="text-2xl mt-6 font-bold">Booking History</h2>
+      {/* Booking History Section */}
+      <h2 className="text-2xl font-bold mb-4">Booking History</h2>
       <div className="mt-4">
         {bookings.length === 0 ? (
-          <p>No bookings found.</p>
+          <div className="bg-white shadow rounded-lg p-6 text-center">
+            <p className="text-gray-600">No bookings found.</p>
+          </div>
         ) : (
-          <table className="min-w-full bg-white rounded-lg shadow">
-            <thead>
-              <tr className="bg-gray-200">
-                <th className="px-4 py-2">Room</th>
-                <th className="px-4 py-2">Start Date</th>
-                <th className="px-4 py-2">End Date</th>
-                <th className="px-4 py-2">Total Days</th>
-                <th className="px-4 py-2">Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              {bookings.map((booking) => {
-                const totalDays = Math.ceil(
-                  (new Date(booking.endDate) - new Date(booking.startDate)) /
-                    (1000 * 60 * 60 * 24)
-                );
-                return (
-                  <tr key={booking._id}>
-                    <td className="border px-4 py-2">{booking.room}</td>
-                    <td className="border px-4 py-2">
+          <div className="space-y-4">
+            {bookings.map((booking) => {
+              const totalDays = Math.ceil(
+                (new Date(booking.endDate) - new Date(booking.startDate)) /
+                  (1000 * 60 * 60 * 24)
+              );
+
+              return (
+                <div
+                  key={booking._id}
+                  className="bg-white p-4 rounded-lg shadow flex flex-col sm:flex-row sm:items-center sm:justify-between"
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-x-4">
+                    <div className="bg-gray-200 rounded-lg px-4 py-2 text-gray-900 font-semibold">
+                      {booking.room}
+                    </div>
+                    <p className="text-gray-700">
+                      <strong>Start:</strong>{" "}
                       {new Date(booking.startDate).toLocaleDateString()}
-                    </td>
-                    <td className="border px-4 py-2">
+                    </p>
+                    <p className="text-gray-700">
+                      <strong>End:</strong>{" "}
                       {new Date(booking.endDate).toLocaleDateString()}
-                    </td>
-                    <td className="border px-4 py-2">{totalDays} days</td>
-                    <td className="border px-4 py-2">${booking.price}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                    </p>
+                    <p className="text-gray-700">
+                      <strong>Days:</strong> {totalDays} days
+                    </p>
+                  </div>
+                  <p className="text-lg font-bold text-blue-500 mt-2 sm:mt-0">
+                    ${booking.price.toFixed(2)}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
         )}
       </div>
     </div>

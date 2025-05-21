@@ -50,7 +50,11 @@ const BookingSchema = new mongoose.Schema({
     },
     required: true,
   },
-
+  price: {
+    type: Number, // ✅ Ensure price is properly set and saved
+    required: true,
+    min: [0, "Price cannot be negative"],
+  },
   createdAt: {
     type: Date,
     default: Date.now,

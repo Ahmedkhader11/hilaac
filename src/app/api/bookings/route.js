@@ -9,7 +9,6 @@ import { NextResponse } from "next/server";
 export async function POST(req) {
   try {
     await db();
-
     const body = await req.json();
     const {
       userId,
@@ -41,70 +40,50 @@ export async function POST(req) {
       );
     }
 
-    // Lookup room by custom 'id' field
+    // Lookup room and ensure price exists
     const room = await Room.findOne({ id: roomId });
-    if (!room) {
-      return new NextResponse(JSON.stringify({ error: "Room not found" }), {
-        status: 404,
-      });
-    }
-
-    // Check if the room is already booked during the requested period
-    const isBooked = await Booking.findOne({
-      room: room._id, // Use MongoDB _id of the room
-      $or: [
-        {
-          startDate: { $lte: new Date(endDate) },
-          endDate: { $gte: new Date(startDate) },
-        },
-      ],
-    });
-
-    if (isBooked) {
+    if (!room || !room.price || typeof room.price !== "number") {
       return new NextResponse(
-        JSON.stringify({
-          error:
-            "Room is already booked for the selected dates. Please choose another room.",
-        }),
-        { status: 409 }
+        JSON.stringify({ error: "Room price is not properly set" }),
+        { status: 400 }
       );
     }
 
-    // --- FIX: Define totalPrice before using it ---
+    // Compute total price
     const start = new Date(startDate);
     const end = new Date(endDate);
-    const timeDiff = Math.abs(end.getTime() - start.getTime());
-    const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); // Calculate total days
+    const timeDiff = Math.abs(end - start);
+    let diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+    if (diffDays < 1) diffDays = 1; // Ensure minimum 1-day booking
 
-    // Ensure 'room.price' exists in your Room schema. If not, this will still be undefined.
-    // Assuming room.price is a number.
     const totalPrice = room.price * diffDays;
-    // --- END FIX ---
 
-    // Create and save the new booking
+    console.log("DEBUG: Calculated totalPrice:", totalPrice);
+    console.log("DEBUG: Type of totalPrice:", typeof totalPrice);
+    console.log("DEBUG: Is totalPrice NaN?", isNaN(totalPrice)); //
+
+    // Create and save the booking with price included
     const newBooking = new Booking({
-      userId: userId,
+      userId,
       room: room._id,
       name,
       email,
       phone,
-      startDate: start, // Use the Date objects created above
-      endDate: end, // Use the Date objects created above
-      guests: Number(guests), // Convert guests to Number
+      startDate: start,
+      endDate: end,
+      guests: Number(guests),
       paymentMethod,
-      price: totalPrice, // Now totalPrice is defined
-      status: "Pending", // Set a default status for the booking
+      price: Number(totalPrice),
     });
 
-    await newBooking.save(); // Booking should now save successfully
+    await newBooking.save();
 
-    // --- IMPORTANT: Increment bookingCount for the user ---
+    // Increment booking count for the user
     await User.findOneAndUpdate(
       { clerkId: userId },
       { $inc: { bookingCount: 1 } },
       { new: true, upsert: true }
     );
-    // --- End of IMPORTANT addition ---
 
     return new NextResponse(
       JSON.stringify({
@@ -115,7 +94,7 @@ export async function POST(req) {
       { status: 201 }
     );
   } catch (error) {
-    console.error("Booking API Error:", error); // This error log will now show the 'totalPrice is not defined' if that was the issue
+    console.error("Booking API Error:", error);
     return new NextResponse(
       JSON.stringify({ error: "Booking failed: " + error.message }),
       { status: 500 }
