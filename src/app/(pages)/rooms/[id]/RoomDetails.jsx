@@ -63,10 +63,14 @@ export default function RoomDetails({ room: initialRoomData }) {
   }, [user, initialRoomData, bookingData.startDate, bookingData.endDate]);
 
   const [error, setError] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false); // New state to track submission
 
   const handleBooking = async (e) => {
     e.preventDefault();
-    setError(null); // Clear any previous errors
+    setError(null);
+
+    if (isSubmitting) return; // Prevent multiple submissions if already submitting
+    setIsSubmitting(true); // Set submitting state to true
 
     try {
       // Validate form data
@@ -112,6 +116,8 @@ export default function RoomDetails({ room: initialRoomData }) {
       router.push(`/bookings/success?bookingId=${result.bookingId}`);
     } catch (err) {
       setError(err.message);
+    } finally {
+      setIsSubmitting(false); // Re-enable the button after submission (success or failure)
     }
   };
 
@@ -208,7 +214,7 @@ export default function RoomDetails({ room: initialRoomData }) {
               required
               className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150"
               value={bookingData.guests || ""}
-              placeholder="Enter number of guests"
+              placeholder="Enter number of guests eg. 1"
               onChange={(e) =>
                 setBookingData({ ...bookingData, guests: e.target.value })
               }
@@ -233,11 +239,17 @@ export default function RoomDetails({ room: initialRoomData }) {
               Total Price: $
               {bookingData.price ? bookingData.price.toFixed(2) : "0.00"}
             </p>
+            {error && <p className="text-red-500 text-center">{error}</p>}
             <button
               type="submit"
-              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-6 rounded-lg shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
+              className={`w-full bg-indigo-600 text-white font-medium py-3 px-6 rounded-lg shadow-lg transition-all duration-300 ease-in-out ${
+                isSubmitting
+                  ? "opacity-50 cursor-not-allowed"
+                  : "hover:bg-indigo-700 transform hover:scale-105 cursor-pointer"
+              }`}
+              disabled={isSubmitting} // Disable the button when submitting
             >
-              Confirm Booking
+              {isSubmitting ? "Booking..." : "Confirm Booking"}
             </button>
           </form>
         </div>

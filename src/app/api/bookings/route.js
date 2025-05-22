@@ -22,7 +22,7 @@ export async function POST(req) {
       paymentMethod,
     } = body;
 
-    // Validate required fields
+    // Validate required fields /Basic validation
     if (
       !userId ||
       !roomId ||
@@ -40,11 +40,29 @@ export async function POST(req) {
       );
     }
 
+    // --- 2. Check for existing active booking for the user ---
+    const existingActiveBooking = await Booking.findOne({
+      userId: userId,
+      endDate: { $gte: new Date() }, // Booking ends in the future or today
+    });
+
+    if (existingActiveBooking) {
+      return NextResponse.json(
+        {
+          error:
+            "You already have an active booking. Only one active booking is allowed per user.",
+        },
+        { status: 409 } // 409 Conflict status
+      );
+    }
+
     // Lookup room and ensure price exists
     const room = await Room.findById(roomId);
     if (!room || !room.price || typeof room.price !== "number") {
       return new NextResponse(
-        JSON.stringify({ error: "Room price is not properly set" }),
+        JSON.stringify({
+          error: "Room not found or its price is not properly set.",
+        }),
         { status: 400 }
       );
     }
@@ -74,12 +92,22 @@ export async function POST(req) {
 
     await newBooking.save();
 
-    // Increment booking count for the user
-    await User.findOneAndUpdate(
-      { clerkId: userId },
-      { $inc: { bookingCount: 1 } },
-      { new: true, upsert: true }
+    // --- 5. Atomically Update User's bookingCount ---
+    // This finds the user and sets bookingCount to 1 ONLY if it's currently 0.
+    // If it's already 1, this operation does nothing for bookingCount, preventing it from exceeding 1.
+    const updatedUser = await User.findOneAndUpdate(
+      { clerkId: userId, bookingCount: { $lt: 1 } }, // Condition: userId and bookingCount < 1
+      { $set: { bookingCount: 1 } }, // Action: Set bookingCount to 1
+      { new: true, upsert: true } // Options: Return updated doc, create if not exists (upsert for user setup)
     );
+
+    if (!updatedUser) {
+      console.warn(
+        `Booking created for user ${userId}, but bookingCount was already 1 or user not found with current settings.`
+      );
+      // You might add logic here to inform the client or take other actions
+      // if `updatedUser` is null and you strictly enforce only one booking total.
+    }
 
     return new NextResponse(
       JSON.stringify({
@@ -91,8 +119,14 @@ export async function POST(req) {
     );
   } catch (error) {
     console.error("Booking API Error:", error);
-    return new NextResponse(
-      JSON.stringify({ error: "Booking failed: " + error.message }),
+
+    if (error.name === "ValidationError") {
+      const messages = Object.values(error.errors).map((val) => val.message);
+      return NextResponse.json({ error: messages.join(", ") }, { status: 400 });
+    }
+
+    return NextResponse.json(
+      { error: "Booking failed: " + error.message },
       { status: 500 }
     );
   }
