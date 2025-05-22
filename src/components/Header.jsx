@@ -59,7 +59,7 @@ const Header = () => {
         {/* Mobile Menu Toggle */}
         <div className="md:hidden">
           <button
-            className="text-amber-700 hover:text-[#f27405] transition-all duration-300 p-2"
+            className="text-amber-700 hover:text-[#f27405] transition-all duration-300 p-2 cursor-pointer"
             aria-label={isMobileMenuOpen ? "Close Menu" : "Open Menu"}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >

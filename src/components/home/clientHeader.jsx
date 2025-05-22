@@ -100,19 +100,8 @@ const ClientHeader = ({ isMobile = false, setIsMobileMenuOpen = () => {} }) => {
                   </Link>
                 )}
                 <div className="border-t border-gray-200 dark:border-gray-700 my-1"></div>
-                <div className="px-4 py-3 flex items-center justify-between  rounded-lg">
-                  <span className="text-sm font-bold tracking-widest">
-                    Account
-                  </span>
-                  <UserButton
-                    appearance={{
-                      elements: { userButtonAvatarBox: "w-8 h-8" },
-                    }}
-                  />
-                </div>
-                <div className="border-t border-gray-200 dark:border-gray-700 my-1"></div>
                 <button
-                  className="w-full flex items-center justify-between px-4 py-4 font-bold text-sm  text-black hover:bg-gray-500 hover:text-white hover:rounded-lg cursor-pointer"
+                  className="w-full flex items-center justify-between px-4 py-4 font-bold text-sm  text-black hover:bg-gray-300 hover:text-black hover:rounded-lg cursor-pointer bg-gray-200 rounded-lg transition-all duration-300 transform hover:scale-103"
                   onClick={() => {
                     const newTheme = !darkTheme;
                     setDarkTheme(newTheme);
@@ -127,6 +116,17 @@ const ClientHeader = ({ isMobile = false, setIsMobileMenuOpen = () => {} }) => {
                     <MdDarkMode className="text-xl" />
                   )}
                 </button>
+                <div className="border-t border-gray-200 dark:border-gray-700 my-1"></div>
+                <div className="px-4 py-3 flex items-center justify-between  rounded-lg bg-gray-200 hover:bg-gray-300 transition-all duration-300 transform hover:scale-103">
+                  <span className="text-sm font-bold tracking-widest">
+                    Account
+                  </span>
+                  <UserButton
+                    appearance={{
+                      elements: { userButtonAvatarBox: "w-8 h-8" },
+                    }}
+                  />
+                </div>
               </>
             ) : (
               // Content when not signed in
@@ -147,7 +147,7 @@ const ClientHeader = ({ isMobile = false, setIsMobileMenuOpen = () => {} }) => {
                 </Link>
                 <div className="border-t border-gray-200 dark:border-gray-700 my-1 mt-3"></div>
                 <button
-                  className="w-full flex items-center justify-between px-4 py-4 font-bold text-sm text-black dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer hover:rounded-lg"
+                  className="w-full flex items-center justify-between px-4 py-4 font-bold text-black bg-gray-200 hover:bg-gray-300 cursor-pointer rounded-lg transition-all duration-300 transform hover:scale-103 "
                   onClick={() => {
                     const newTheme = !darkTheme;
                     setDarkTheme(newTheme);
@@ -155,7 +155,7 @@ const ClientHeader = ({ isMobile = false, setIsMobileMenuOpen = () => {} }) => {
                     // Keep dropdown open if user just toggles theme
                   }}
                 >
-                  Dark Mode
+                  <span className="border-r-2 pr-7">Dark Mode</span>
                   {darkTheme ? (
                     <MdOutlineLightMode className="text-xl" />
                   ) : (
