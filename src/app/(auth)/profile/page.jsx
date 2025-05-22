@@ -72,7 +72,7 @@ export default function ProfilePage() {
   return (
     <div className="container mx-auto p-6 mt-10">
       {/* Profile Info Section */}
-      <div className="bg-white shadow rounded-lg p-6 mb-8 text-center sm:text-left">
+      <div className="bg-gray-100 shadow rounded-lg p-6 mb-8 text-center sm:text-left  dark:text-black">
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
           <img
             src={user?.imageUrl || "/default-avatar.jpg"}
@@ -95,11 +95,11 @@ export default function ProfilePage() {
       </div>
 
       {/* Booking History Section */}
-      <h2 className="text-2xl font-bold mb-4">Booking History</h2>
+      <h2 className="text-2xl font-bold mb-4 ">Booking History</h2>
       <div className="mt-4">
         {bookings.length === 0 ? (
           <div className="bg-white shadow rounded-lg p-6 text-center">
-            <p className="text-gray-600">No bookings found.</p>
+            <p className="text-gray-600">You have not booked yet.</p>
           </div>
         ) : (
           <div className="space-y-4">
@@ -112,10 +112,10 @@ export default function ProfilePage() {
               return (
                 <div
                   key={booking._id}
-                  className="bg-white p-4 rounded-lg shadow flex flex-col sm:flex-row sm:items-center sm:justify-between"
+                  className="bg-gray-100 p-4 rounded-lg shadow flex flex-col sm:flex-row sm:items-center sm:justify-between"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-x-4">
-                    <div className="bg-gray-200 rounded-lg px-4 py-2 text-gray-900 font-semibold">
+                    <div className="bg-gray-200  rounded-lg px-4 py-3 text-gray-900 font-semibold">
                       {booking.room}
                     </div>
                     <p className="text-gray-700">
@@ -126,7 +126,7 @@ export default function ProfilePage() {
                       <strong>End:</strong>{" "}
                       {new Date(booking.endDate).toLocaleDateString()}
                     </p>
-                    <p className="text-gray-700">
+                    <p className="text-gray-700 pb-3">
                       <strong>Days:</strong> {totalDays} days
                     </p>
                   </div>

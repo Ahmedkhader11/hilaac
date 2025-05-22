@@ -19,7 +19,10 @@ export default function BlogPostPage({ params }) {
       <p className="text-lg text-gray-700 leading-relaxed mt-6">
         {blog.content}
       </p>
-      <Link href="/blog" className="mt-6 block text-indigo-600 hover:underline">
+      <Link
+        href="/blog"
+        className="mt-6 block text-indigo-600 hover:underline transform hover:scale-105"
+      >
         ← Back to Blog
       </Link>
     </div>

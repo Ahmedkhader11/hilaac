@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <header>
       <div className="header">
-        <div className="flex items-center justify-center pl-4 md:pl-10">
+        <div className="flex items-center justify-center ">
           <Link href="/">
             <Image
               src="/images/logo.png"
@@ -44,7 +44,7 @@ const Header = () => {
             About
           </Link>
           <Link href={"/rooms"} className="nav_links">
-            Our Rooms
+            Rooms
           </Link>
           <Link href={"/blog"} className="nav_links">
             Blogs
@@ -74,8 +74,8 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-amber-300 p-4 fixed top-10 left-0 right-0 z-60 flex justify-between transition-all duration-300">
-          <nav className="flex flex-col gap-4 items-start dark:text-black">
+        <div className="md:hidden bg-gray-100 rounded-b-2xl p-4 fixed top-12  max-sm:left-0 left-1/2  right-0 z-60 flex flex-col justify-between transition-all duration-300 border-b-2 ">
+          <nav className="flex flex-col gap-4 items-start w-full dark:text-black">
             <Link
               href={"/"}
               className="nav_links font-black"

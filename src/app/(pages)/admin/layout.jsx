@@ -121,10 +121,10 @@ export default function AdminLayout({ children }) {
       {/* Main Content */}
       <main className="md:ml-64 transition-all duration-300 my-2">
         {/* Top Header */}
-        <header className="bg-white dark:bg-gray-800 shadow-sm">
-          <div className="px-6 py-4 flex items-center justify-between">
-            <div>
-              <h1 className="text-xl font-semibold text-gray-800 dark:text-white">
+        <header className="bg-white dark:bg-gray-800 shadow-sm fixed top-12 right-0 left-0 md:left-64 ">
+          <div className="px-6 py-4 flex items-center justify-between ">
+            <div className="relative">
+              <h1 className="text-xl font-semibold text-gray-800 dark:text-white ">
                 Welcome back, Admin
               </h1>
               <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -185,7 +185,7 @@ export default function AdminLayout({ children }) {
         </header>
 
         {/* Content Area */}
-        <div className="p-2">
+        <div className="mt-22 p-3">
           <div className="bg-white dark:bg-gray-800 rounded-xl min-h-screen p-6">
             {children}
           </div>

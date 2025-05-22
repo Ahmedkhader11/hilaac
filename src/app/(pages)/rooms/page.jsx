@@ -61,15 +61,15 @@ const Rooms = () => {
         </div>
       </section>
       {/* Resort */}
-      <section className="container mx-auto my-15 ">
+      <section className="container mx-auto my-5  ">
         <div className="flex relative">
           <img
             src="/images/bg-2.png"
             alt="bg-2"
-            className=" absolute inset-0 -z-10"
+            className="absolute inset-0 -z-10"
           />
-          <div className="flex flex-col md:flex-row items-center p-3 md:p-5 lg:p-8 w-full">
-            <div className="w-full md:w-1/2 lg:w-5/12 image-wrapper mb-6 md:mb-0">
+          <div className=" flex flex-col md:flex-row items-center p-3 md:p-5 lg:p-8 w-full">
+            <div className=" w-full md:w-1/2 lg:w-5/12 image-wrapper mb-6 md:mb-0">
               <img
                 src="/images/feature.png"
                 alt="feature"
@@ -78,13 +78,15 @@ const Rooms = () => {
               />
             </div>
 
-            <div className="w-full md:w-1/2 lg:w-7/12 md:ps-5 lg:ps-8 text-wrapper resort-content">
-              <span className="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wider font-semibold">
-                Luxury Hotel & Resort
-              </span>
-              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mt-2 mb-4 text-indigo-700 font-serif">
-                Pearl Of The Adriatic
-              </h2>
+            <div className="w-full md:w-1/2 lg:w-7/12 md:ps-5 lg:ps-8 text-wrapper max-md:pt-5 ">
+              <div className="text-center">
+                <span className="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wider font-semibold">
+                  Luxury Hotel & Resort
+                </span>
+                <h2 className="text-2xl md:text-4xl lg:text-5xl text-indigo-700  font-bold font-serif mt-2 mb-4">
+                  Pearl Of The Adriatic
+                </h2>
+              </div>
               <p className="text-gray-700 dark:text-gray-400 leading-relaxed mb-4">
                 Nestled along the breathtaking Adriatic coast, our luxury resort
                 offers a sanctuary of elegance and relaxation. Immerse yourself
@@ -98,9 +100,12 @@ const Rooms = () => {
                 unmatched comfort, stunning ocean views, and indulgent
                 amenities.
               </p>
-              <button className="bg-indigo-600 hover:bg-indigo-800 text-white font-semibold py-2 px-8 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-300 ease-in-out cursor-pointer">
-                DISCOVER MORE
-              </button>
+
+              <div className=" text-center">
+                <button className="bg-indigo-600 hover:bg-indigo-800 text-white font-semibold py-2 px-10 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all  duration-300 ease-in-out cursor-pointer transform hover:scale-105">
+                  <Link href="/discover">DISCOVER MORE</Link>
+                </button>
+              </div>
             </div>
           </div>
         </div>

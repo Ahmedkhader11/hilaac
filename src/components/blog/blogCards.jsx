@@ -33,9 +33,14 @@ const BlogCard = ({ image, category, title, description, date }) => {
             </svg>
             <span>{date}</span>
           </div>
-          <button className="text-blue-500 underline cursor-pointer">
-            Read More
-          </button>
+          <div className="text-end">
+            <button
+              type="submit"
+              className="text-blue-500 underline cursor-pointer "
+            >
+              Read More
+            </button>
+          </div>
         </div>
       </Link>
     </div>

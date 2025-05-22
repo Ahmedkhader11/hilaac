@@ -60,7 +60,7 @@ body {
 }
 /* Nav Links */
 .nav_links {
-  @apply px-2 py-1 transition-all duration-300 cursor-pointer hover:bg-gray-100 rounded-sm hover:text-black;
+  @apply px-2 py-1 transition-all duration-300 cursor-pointer hover:bg-gray-100 rounded-sm hover:text-black md:hover:scale-105 hover:scale-x-102 max-md:border-b-2 border-gray-300 w-full;
 }
 
 .sign_links {
@@ -88,4 +88,8 @@ body {
 .single_service:hover::after {
   @apply opacity-100;
   @apply text-white text-base font-semibold; /* These will affect text inside the pseudo-element */
+}
+
+.get-start-btn {
+  @apply flex items-center px-4 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-full transition-all duration-500 focus:outline-none  cursor-pointer tracking-widest transform hover:scale-105;
 }

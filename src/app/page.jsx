@@ -24,16 +24,18 @@ export default function Home() {
               embrace serenity, and let us redefine your stay.
             </p>
 
-            <button className="px-10 py-2  text-white rounded bg-indigo-600 hover:bg-indigo-800 transition-all duration-200 cursor-pointer font-bold tracking-widest ">
-              Visit Us
-            </button>
+            <div className="flex justify-center md:justify-start">
+              <button className="px-10 py-2  text-white rounded bg-indigo-600 hover:bg-indigo-800 transition-all duration-300 cursor-pointer font-bold tracking-widest transform hover:scale-105 ">
+                Visit Us
+              </button>
+            </div>
           </div>
         </section>
 
         {/* Booking Form */}
         <section className="w-full lg:w-5/12 p-4">
           <div className="booking-form bg-gray-100 p-6 rounded-lg shadow-md dark:text-black">
-            <h2 className="text-2xl font-bold mb-4">Book A Room</h2>
+            <h2 className="text-2xl font-bold mb-4 text-center">Book A Room</h2>
             <div className="flex flex-wrap -mx-2 ">
               {/* Check-in Date */}
               <div className="w-full md:w-1/2 px-2 mb-4">
@@ -149,9 +151,9 @@ export default function Home() {
       </section>
       {/* About Us */}
       <section className="container mx-auto my-5  ">
-        <div className="container mx-auto max-w-screen px-4 flex flex-col lg:flex-row gap-6 justify-between items-center flex-wrap lg:flex-nowrap pb-10 ">
+        <div className="w-full flex flex-col lg:flex-row gap-6 justify-between items-center flex-wrap lg:flex-nowrap pb-10  ">
           {/* Image Container */}
-          <div className=" max-sm:w-full max-sm:mx-auto  flex-1/3 lg:w-1/2 relative pr-20  mt-4">
+          <div className="max-sm:w-full max-sm:mx-auto flex-1/3 lg:w-1/2 relative pr-14  mt-4">
             <img
               src="/images/about-1.png"
               alt="hotel_img"
@@ -160,12 +162,12 @@ export default function Home() {
             <img
               src="/images/about-2.png"
               alt="bedroom_img"
-              className="absolute bottom-0 right-0 w-1/2 shadow-sm p-1 bg-white rounded-lg  -translate-x-12"
+              className="absolute bottom-0 right-0 w-1/2 shadow-sm p-1 bg-white rounded-lg  -translate-x-2"
             />
           </div>
 
           {/* Text Content */}
-          <div className="w-full flex-1/2 lg:w-1/2 pl-10">
+          <div className="w-full flex-1/2 lg:w-1/2 px-3">
             <div className="mb-6 text-center">
               <span className="text-primary font-semibold text-sm uppercase tracking-wide ">
                 About Us
@@ -240,9 +242,11 @@ export default function Home() {
               {/* Repeat for other list items */}
             </div>
 
-            <button className="bg-indigo-600 hover:bg-indigo-800 text-white px-8 py-3 rounded flex justify-center transition-all duration-300 cursor-pointer">
-              DISCOVER MORE
-            </button>
+            <div className="flex justify-center">
+              <button className="bg-indigo-600 hover:bg-indigo-800 text-white px-8 py-3 rounded transform hover:scale-105 transition-all duration-300 cursor-pointer tra">
+                DISCOVER MORE
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -412,14 +416,14 @@ export default function Home() {
       <section className="container mx-auto my-5  border-gray-200">
         <div className="flex flex-col ">
           <div className="w-full flex flex-col items-center text-center py-5">
-            <span className="text-lg font-semibold text-gray-600">
+            <span className="text-lg font-semibold text-gray-600 dark:text-gray-200">
               The pleasure of Luxury{" "}
             </span>
             <h2 className="text-5xl font-extrabold tracking-widest my-5 text-indigo-700 font-serif">
               {" "}
               Rooms & Suites
             </h2>
-            <p className="max-w-2xl mx-auto text-gray-600">
+            <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-400">
               Experience the perfect blend of modern sophistication and timeless
               allure in our Rooms & Suites. Each space is thoughtfully designed
               with elegant touches and contemporary comforts, creating an
@@ -486,20 +490,20 @@ export default function Home() {
             {/* first Column - Text Content */}
             <div className="lg:w-1/4 shadow-[4px_4px_0px_rgba(63,63,156,0.2)] hover:shadow-[4px_4px_0px_rgba(63,63,156,0.8)]  transition-shadow duration-300 rounded">
               <div className="mb-6 text-center">
-                <span className="inline-block bg-indigo-100 text-indigo-600 font-semibold rounded-full px-3 py-1 text-sm mb-2">
+                <span className="inline-block bg-indigo-100 text-indigo-600 font-semibold rounded-full px-3 py-1 text-sm mb-2 ">
                   Best Prices
                 </span>
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4 dark:text-gray-200">
                   Extra Service
                 </h2>
               </div>
-              <p className="text-lg text-gray-700 leading-relaxed mb-4">
+              <p className="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-400">
                 Enjoy premium services at unbeatable prices, ensuring every stay
                 is effortless and memorable. From personalized concierge
                 assistance to exclusive guest perks, we cater to your needs.
               </p>
 
-              <p className="text-lg text-gray-700 leading-relaxed">
+              <p className="text-lg text-gray-700 leading-relaxed dark:text-gray-400">
                 Whether you desire a lavish experience or thoughtful
                 conveniences, our extra services enhance every moment. Indulge
                 in tailored hospitality designed for comfort, luxury, and
@@ -550,7 +554,7 @@ export default function Home() {
                   />
                   Hassle-free housekeeping every day.
                 </p>
-                <button className="absolute bottom-0 left-0 w-full bg-indigo-600 hover:bg-indigo-800 text-white font-semibold py-3 px-6 rounded-b-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-300 ease-in-out cursor-pointer">
+                <button className="absolute bottom-0 left-0 w-full bg-indigo-600 hover:bg-indigo-800 text-white font-semibold py-3 px-6 rounded-b-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all  duration-300 ease-in-out cursor-pointer transform hover:scale-101">
                   GET STARTED
                 </button>
               </div>
@@ -597,7 +601,7 @@ export default function Home() {
                   />
                   Curated choices for refreshing enjoyment.
                 </p>
-                <button className="absolute bottom-0 left-0 w-full bg-indigo-600 hover:bg-indigo-800 text-white font-semibold py-3 px-6 rounded-b-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-300 ease-in-out cursor-pointer">
+                <button className="absolute bottom-0 left-0 w-full bg-indigo-600 hover:bg-indigo-800 text-white font-semibold py-3 px-6 rounded-b-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-300 ease-in-out cursor-pointer transform hover:scale-101">
                   LEARN MORE
                 </button>
               </div>
@@ -635,9 +639,9 @@ export default function Home() {
             {/* Left Column - Booking Form */}
             <div className="lg:w-5/12 flex flex-col w-full  ">
               <div className="mb-6">
-                <span className="inline-block text-gray-600 font-semibold mb-2">
+                <p className="py-5 text-gray-600 font-semibold mb-2 text-center">
                   Make Appointment
-                </span>
+                </p>
                 <h2 className="text-5xl font-serif text-indigo-700 font-bold ">
                   Book A Room
                 </h2>
@@ -740,7 +744,7 @@ export default function Home() {
                     </select>
                   </div>
                 </div>
-                <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline w-full mt-4 cursor-pointer">
+                <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline w-full mt-4 cursor-pointer transform hover:scale-101 ">
                   <Link href="/rooms">BOOK NOW</Link>
                 </button>
               </form>
@@ -807,12 +811,14 @@ export default function Home() {
                     </svg>
                     <span>Published on October 26, 2024</span>
                   </div>
-                  <button
-                    type="submit"
-                    className="text-blue-500 underline cursor-pointer "
-                  >
-                    Read More
-                  </button>
+                  <div className="text-end">
+                    <button
+                      type="submit"
+                      className="text-blue-500 underline cursor-pointer "
+                    >
+                      Read More
+                    </button>
+                  </div>
                 </div>
               </Link>
             </div>
@@ -854,12 +860,14 @@ export default function Home() {
                     </svg>
                     <span>Published on November 15, 2024</span>
                   </div>
-                  <button
-                    type="submit"
-                    className="text-blue-500 underline cursor-pointer "
-                  >
-                    Read More
-                  </button>
+                  <div className="text-end">
+                    <button
+                      type="submit"
+                      className="text-blue-500 underline cursor-pointer "
+                    >
+                      Read More
+                    </button>
+                  </div>
                 </div>
               </Link>
             </div>
@@ -901,12 +909,14 @@ export default function Home() {
                     </svg>
                     <span>Published on December 03, 2024</span>
                   </div>
-                  <button
-                    type="submit"
-                    className="text-blue-500 underline cursor-pointer  "
-                  >
-                    Read More
-                  </button>
+                  <div className="text-end">
+                    <button
+                      type="submit"
+                      className="text-blue-500 underline cursor-pointer "
+                    >
+                      Read More
+                    </button>
+                  </div>
                 </div>
               </Link>
             </div>
@@ -914,7 +924,7 @@ export default function Home() {
           <div className="text-center mt-12">
             <Link
               href="/blog" // Replace with your actual blog page URL
-              className="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-full transition-colors duration-300"
+              className="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105"
             >
               View All Blog Posts
             </Link>
