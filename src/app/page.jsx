@@ -169,7 +169,7 @@ export default function Home() {
           {/* Text Content */}
           <div className="w-full flex-1/2 lg:w-1/2 px-3">
             <div className="mb-6 text-center">
-              <span className="text-primary font-semibold text-sm uppercase tracking-wide ">
+              <span className="text-primary font-semibold text-sm uppercase tracking-wide max-sm:pt-4 ">
                 About Us
               </span>
               <h2 className="text-4xl md:text-6xl font-bold mt-2 mb-4 text-indigo-700 font-serif">
@@ -254,7 +254,7 @@ export default function Home() {
       <section className="container mx-auto my-5 ">
         <div className="container mx-auto px-4">
           {/* Title Section */}
-          <div className="w-full flex flex-col items-center text-center py-5">
+          <div className="w-full flex flex-col items-center">
             <span className="text-lg font-semibold text-gray-600">Explore</span>
             <h2 className="text-3xl md:text-5xl font-bold mt-2 mb-4 lg:tracking-widest text-indigo-700 font-serif">
               The Hotel
@@ -415,10 +415,10 @@ export default function Home() {
       {/* Rooms */}
       <section className="container mx-auto my-5  border-gray-200">
         <div className="flex flex-col ">
-          <div className="w-full flex flex-col items-center text-center py-5">
-            <span className="text-lg font-semibold text-gray-600 dark:text-gray-200">
+          <div className="w-full flex flex-col items-center  py-5">
+            <p className="text-lg font-semibold text-gray-600 dark:text-gray-400 ">
               The pleasure of Luxury{" "}
-            </span>
+            </p>
             <h2 className="text-5xl font-extrabold tracking-widest my-5 text-indigo-700 font-serif">
               {" "}
               Rooms & Suites
@@ -484,7 +484,7 @@ export default function Home() {
         </div>
       </section>
       {/* Prices */}
-      <section className="container mx-auto relative py-7 md:py-10 lg:py-15 my-10  overflow-hidden rounded">
+      <section className="container mx-auto relative py-5 md:py-7 lg:py-10  overflow-hidden rounded">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="flex flex-col lg:flex-row gap-10 lg:gap-20">
             {/* first Column - Text Content */}
@@ -610,13 +610,13 @@ export default function Home() {
         </div>
       </section>
       {/* Testimonial */}
-      <section className="container mx-auto my-5 pt-5">
+      <section className="container mx-auto my-5 pt-10">
         <div className="container  mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <small className="uppercase text-yellow-500 font-bold tracking-wide">
+          <div className="mb-12">
+            <p className="uppercase text-yellow-500 font-bold tracking-wide text-center ">
               Testimonial
-            </small>
-            <h2 className="text-3xl font-extrabold text-indigo-700 font-serif sm:text-4xl lg:text-5xl mt-7">
+            </p>
+            <h2 className="text-3xl text-center  font-extrabold text-indigo-700 font-serif sm:text-4xl lg:text-5xl mt-7">
               What Our Client Says
             </h2>
             <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
