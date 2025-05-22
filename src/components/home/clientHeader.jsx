@@ -55,7 +55,7 @@ const ClientHeader = ({ isMobile = false, setIsMobileMenuOpen = () => {} }) => {
             // User is not signed in: show "Get Started" button
             <button
               onClick={handleDropdownToggle}
-              className="flex items-center px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-md transition-all duration-300 focus:ring-amber-500 cursor-pointer transform hover:scale-103"
+              className="flex items-center px-4 py-2 bg-amber-500 hover:bg-amber-600 text-black font-bold rounded-md transition-all duration-300 focus:ring-amber-500 cursor-pointer transform hover:scale-103"
             >
               Get Started
               {isDropdownOpen ? (

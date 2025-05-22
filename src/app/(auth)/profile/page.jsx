@@ -130,7 +130,7 @@ export default function ProfilePage() {
                       <strong>Days:</strong> {totalDays} days
                     </p>
                   </div>
-                  <p className="text-lg font-bold text-blue-500 mt-2 sm:mt-0">
+                  <p className="text-lg font-bold text-red-500 mt-2 sm:mt-0">
                     ${booking.price.toFixed(2)}
                   </p>
                 </div>
