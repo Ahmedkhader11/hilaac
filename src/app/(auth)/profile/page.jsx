@@ -148,7 +148,7 @@ export default function ProfilePage() {
   const clerkUsername = user.username; // Clerk's username
 
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-900 dark:text-gray-100 py-4 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-100 text-gray-900 dark:text-gray-100 py-6 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto space-y-6">
         <div className="flex flex-col items-start space-y-1 mb-6">
           <div className="flex justify-between items-center w-full border-b-1 pb-2.5 border-gray-200 ">
@@ -206,7 +206,7 @@ export default function ProfilePage() {
               </p>
             </div>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-1 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-2 gap-4">
             <div>
               <label
                 htmlFor="firstName"
