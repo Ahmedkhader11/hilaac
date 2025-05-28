@@ -419,7 +419,7 @@ export default function Home() {
             <p className="text-lg font-semibold text-gray-600 dark:text-gray-400 ">
               The pleasure of Luxury{" "}
             </p>
-            <h2 className="text-5xl font-extrabold tracking-widest my-5 text-indigo-700 font-serif">
+            <h2 className="text-5xl font-extrabold tracking-widest my-5 text-indigo-700 font-serif max-sm:text-center">
               {" "}
               Rooms & Suites
             </h2>

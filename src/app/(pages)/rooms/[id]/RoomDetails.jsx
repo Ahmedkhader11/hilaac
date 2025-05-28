@@ -157,84 +157,112 @@ export default function RoomDetails({ room: initialRoomData }) {
           </h2>
 
           <form onSubmit={handleBooking} className="space-y-4 sm:space-y-5">
-            <input
-              type="text"
-              required
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150"
-              value={bookingData.name}
-              placeholder="Enter your name"
-              onChange={(e) =>
-                setBookingData({ ...bookingData, name: e.target.value })
-              }
-            />
-            <input
-              type="email"
-              required
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150"
-              value={bookingData.email}
-              placeholder="Enter your email"
-              onChange={(e) =>
-                setBookingData({ ...bookingData, email: e.target.value })
-              }
-            />
-            <input
-              type="tel"
-              required
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150"
-              value={bookingData.phone}
-              placeholder="Enter your phone number"
-              onChange={(e) =>
-                setBookingData({ ...bookingData, phone: e.target.value })
-              }
-            />
-            <input
-              type="date"
-              required
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150"
-              value={bookingData.startDate.toISOString().split("T")[0]}
-              min={new Date().toISOString().split("T")[0]}
-              onChange={(e) =>
-                updatePrice(new Date(e.target.value), bookingData.endDate)
-              }
-            />
-            <input
-              type="date"
-              required
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150"
-              value={bookingData.endDate.toISOString().split("T")[0]}
-              min={bookingData.startDate.toISOString().split("T")[0]}
-              onChange={(e) =>
-                updatePrice(bookingData.startDate, new Date(e.target.value))
-              }
-            />
-            <input
-              type="number"
-              min="1"
-              max={room.maxGuests}
-              required
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150"
-              value={bookingData.guests || ""}
-              placeholder="Enter number of guests eg. 1"
-              onChange={(e) =>
-                setBookingData({ ...bookingData, guests: e.target.value })
-              }
-            />
-            <select
-              required
-              className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150"
-              value={bookingData.paymentMethod}
-              onChange={(e) =>
-                setBookingData({
-                  ...bookingData,
-                  paymentMethod: e.target.value,
-                })
-              }
-            >
-              <option value="">Select Payment Method</option>
-              <option value="Zaad">Zaad</option>
-              <option value="E-dahap">E-dahap</option>
-              <option value="Soltelco">Soltelco</option>
-            </select>
+            <label htmlFor="username" className="block  tracking-widest ">
+              <p className="pb-2 ml-1.5 font-semibold">username;</p>
+              <input
+                id="username"
+                type="text"
+                required
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150"
+                value={bookingData.name}
+                placeholder="Enter your name"
+                onChange={(e) =>
+                  setBookingData({ ...bookingData, name: e.target.value })
+                }
+              />
+            </label>
+            <label htmlFor="email" className="block tracking-widest ">
+              <p className="pb-2 ml-1.5 font-semibold">Email:</p>
+              <input
+                type="email"
+                id="email"
+                required
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150"
+                value={bookingData.email}
+                placeholder="Enter your email"
+                onChange={(e) =>
+                  setBookingData({ ...bookingData, email: e.target.value })
+                }
+              />
+            </label>
+            <label htmlFor="tel" className="block tracking-widest ">
+              <p className="pb-2 ml-1.5 font-semibold">telephone:</p>
+              <input
+                type="tel"
+                id="tel"
+                required
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150"
+                value={bookingData.phone}
+                placeholder="Enter your phone number"
+                onChange={(e) =>
+                  setBookingData({ ...bookingData, phone: e.target.value })
+                }
+              />
+            </label>
+            <label htmlFor="startdate" className="block  tracking-widest ">
+              <p className="pb-2 ml-1.5 font-semibold">Start-date:</p>
+              <input
+                type="date"
+                id="startdate"
+                required
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150"
+                value={bookingData.startDate.toISOString().split("T")[0]}
+                min={new Date().toISOString().split("T")[0]}
+                onChange={(e) =>
+                  updatePrice(new Date(e.target.value), bookingData.endDate)
+                }
+              />
+            </label>
+            <label htmlFor="end-date" className="block tracking-widest ">
+              <p className="pb-2 ml-1.5 font-semibold">End-date:</p>
+              <input
+                id="end-date"
+                type="date"
+                required
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150"
+                value={bookingData.endDate.toISOString().split("T")[0]}
+                min={bookingData.startDate.toISOString().split("T")[0]}
+                onChange={(e) =>
+                  updatePrice(bookingData.startDate, new Date(e.target.value))
+                }
+              />
+            </label>
+            <label htmlFor="guest" className="block  tracking-widest ">
+              <p className="pb-2 ml-1.5 font-semibold">Guest:</p>
+              <input
+                type="number"
+                id="guest"
+                min="1"
+                max={room.maxGuests}
+                required
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150"
+                value={bookingData.guests || ""}
+                placeholder="Enter number of guests eg. 1"
+                onChange={(e) =>
+                  setBookingData({ ...bookingData, guests: e.target.value })
+                }
+              />
+            </label>
+            <label htmlFor="payments" className="block  tracking-widest ">
+              <p className="pb-2 ml-1.5 font-semibold"> Payments:</p>
+              <select
+                id="payments"
+                required
+                className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-150"
+                value={bookingData.paymentMethod}
+                onChange={(e) =>
+                  setBookingData({
+                    ...bookingData,
+                    paymentMethod: e.target.value,
+                  })
+                }
+              >
+                <option value="">Select Payment Method</option>
+                <option value="Zaad">Zaad</option>
+                <option value="E-dahap">E-dahap</option>
+                <option value="Soltelco">Soltelco</option>
+              </select>
+            </label>
             <p className="text-xl sm:text-2xl font-extrabold pt-5 text-end text-red-700">
               Total Price: $
               {bookingData.price ? bookingData.price.toFixed(2) : "0.00"}
