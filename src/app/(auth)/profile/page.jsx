@@ -1,8 +1,9 @@
 "use client";
 import { useEffect, useState, useCallback } from "react";
+import Link from "next/link";
 import { useUser, UserButton } from "@clerk/nextjs";
 import { format } from "date-fns"; // For formatting dates
-import { CheckCircle, Plus, Mail, Phone } from "lucide-react"; // Icons for email verified/add email, mail, phone
+import { CheckCircle, Plus } from "lucide-react"; // Icons for email verified/add email, mail, phone
 
 export default function ProfilePage() {
   const { user, isSignedIn } = useUser();
@@ -363,7 +364,7 @@ export default function ProfilePage() {
             </p>
             {/* Optional: Add a link to your booking page */}
             <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
-              Book a Room
+              <Link href="/rooms">Book a Room</Link>
             </button>
           </div>
         )}
