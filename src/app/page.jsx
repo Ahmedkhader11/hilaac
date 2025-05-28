@@ -423,7 +423,7 @@ export default function Home() {
               {" "}
               Rooms & Suites
             </h2>
-            <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-400">
+            <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-400 max-sm:px-2">
               Experience the perfect blend of modern sophistication and timeless
               allure in our Rooms & Suites. Each space is thoughtfully designed
               with elegant touches and contemporary comforts, creating an
