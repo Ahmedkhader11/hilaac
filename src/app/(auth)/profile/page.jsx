@@ -242,7 +242,7 @@ export default function ProfilePage() {
         </div>
 
         {/* Email Addresses Card */}
-        <div className="bg-white p-6 rounded-lg shadow-sm">
+        <div className="bg-white p-3 rounded-lg shadow-sm">
           <h2 className="text-lg font-semibold mb-4 text-gray-800 ">
             Email addresses
           </h2>
@@ -288,11 +288,11 @@ export default function ProfilePage() {
         </div>
 
         {/* Username Card */}
-        <div className="bg-white p-6 rounded-lg shadow-sm">
+        <div className="bg-white p-3 rounded-lg shadow-sm">
           <h2 className="text-lg font-semibold mb-4 text-gray-800 ">
             Username
           </h2>
-          <div className="flex justify-between space-x-2 px-2">
+          <div className="flex justify-between gap-x-2 ">
             <input
               id="username"
               type="text"
@@ -301,7 +301,7 @@ export default function ProfilePage() {
               className="flex-grow px-3 py-2 border border-gray-300  rounded-md shadow-sm bg-gray-50  text-gray-900  focus:outline-none"
             />
             {/* Optional: Add a button to manage username via Clerk's UIs (e.g., UserProfile) */}
-            <button className="px-3 py-2 bg-gray-600 text-white rounded-md text-sm font-medium hover:bg-gray-500 transition-colors duration-200 cursor-pointer">
+            <button className="px-2 py-2 bg-gray-600 text-white rounded-md text-sm font-medium hover:bg-gray-500 transition-colors duration-200 cursor-pointer">
               Manage
             </button>
           </div>
