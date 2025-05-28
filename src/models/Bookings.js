@@ -26,7 +26,7 @@ const BookingSchema = new mongoose.Schema({
     // --- START OF CHANGE ---
     // Custom validation for the phone number format: 063-XXXXXXX
     match: [
-      /^0(63|65|67)\\d{7}$/,
+      /^0(63|65|67)\d{7}$/,
       "Please use a valid Somali phone number format (e.g., 0631234567 or 0651234567 or 0671234567)",
     ],
     // --- END OF CHANGE ---
