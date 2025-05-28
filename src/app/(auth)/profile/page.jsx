@@ -252,7 +252,7 @@ export default function ProfilePage() {
                 key={emailObject.id}
                 className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0"
               >
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-7 md:space-x-48 lg:space-x-50 ">
                   <span className="text-gray-700  text-base">
                     {emailObject.emailAddress}
                   </span>
@@ -292,7 +292,7 @@ export default function ProfilePage() {
           <h2 className="text-lg font-semibold mb-4 text-gray-800 ">
             Username
           </h2>
-          <div className="flex items-center space-x-2">
+          <div className="flex justify-between space-x-2 px-2">
             <input
               id="username"
               type="text"
