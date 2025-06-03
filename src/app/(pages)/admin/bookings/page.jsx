@@ -25,14 +25,14 @@ export default async function BookingsAdmin() {
   }));
 
   return (
-    <div className="container mx-auto py-8">
-      <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-200">
+    <div className="container py-8 mx-auto">
+      <h1 className="mb-6 text-3xl font-bold text-gray-800 dark:text-gray-200">
         Booking Management
       </h1>
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white dark:bg-gray-800 rounded-lg shadow">
+        <table className="min-w-full bg-white rounded-lg shadow dark:bg-gray-800">
           <thead>
-            <tr className="bg-indigo-600 text-white">
+            <tr className="text-white bg-indigo-600">
               <th className="px-4 py-2">Booking ID</th>
               <th className="px-4 py-2">Cus.Name</th>
               <th className="px-4 py-2">Room</th>
@@ -46,18 +46,18 @@ export default async function BookingsAdmin() {
                 key={booking._id}
                 className={`${
                   index % 2 === 0
-                    ? "bg-gray-100 dark:bg-gray-700"
-                    : "bg-gray-200 dark:bg-gray-600"
+                    ? "bg-gray-100 dark:bg-gray-700 text-white"
+                    : "bg-gray-200 dark:bg-gray-600 text-white"
                 }`}
               >
-                <td className="border px-4 py-2 text-sm">{booking._id}</td>
-                <td className="border px-4 py-2 text-sm">{booking.name}</td>
-                <td className="border px-4 py-2 text-sm">{booking.room}</td>
-                <td className="border px-4 py-2 text-sm">
+                <td className="px-4 py-2 text-sm border">{booking._id}</td>
+                <td className="px-4 py-2 text-sm border">{booking.name}</td>
+                <td className="px-4 py-2 text-sm border">{booking.room}</td>
+                <td className="px-4 py-2 text-sm border">
                   {new Date(booking.startDate).toLocaleDateString()} -{" "}
                   {new Date(booking.endDate).toLocaleDateString()}
                 </td>
-                <td className="border px-4 py-2 text-sm">
+                <td className="px-4 py-2 text-sm border">
                   <BookingActionButtons bookingId={booking._id} />
                 </td>
               </tr>
