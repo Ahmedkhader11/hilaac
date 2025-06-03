@@ -2,7 +2,7 @@ import { SignIn } from "@clerk/nextjs";
 
 export default function SignInPage() {
   return (
-    <div className="flex justify-center  ">
+    <div className="flex items-center justify-center h-screen bg-[url('/images/hero-bg.png')] ">
       <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" />
     </div>
   );

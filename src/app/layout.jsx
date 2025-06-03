@@ -4,6 +4,7 @@ import { ClerkLoaded, ClerkProvider } from "@clerk/nextjs";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ThemeProvider from "@/components/home/ThemeProvider";
+import { neobrutalism } from "@clerk/themes";
 
 /* 
 
@@ -38,7 +39,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        baseTheme: neobrutalism,
+      }}
+    >
       <ThemeProvider>
         <html lang="en">
           <body
@@ -46,7 +51,7 @@ export default function RootLayout({ children }) {
           >
             <ClerkLoaded>
               <Header />
-              <main className="min-h-screen mx-auto pt-10">{children}</main>
+              <main className="min-h-screen pt-10 mx-auto">{children}</main>
               <Footer />
             </ClerkLoaded>
           </body>

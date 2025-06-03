@@ -113,9 +113,9 @@ export default function ProfilePage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-gray-50 dark:bg-gray-900">
+      <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-50 dark:bg-gray-900">
         <div className="relative flex items-center justify-center">
-          <div className="w-16 h-16 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+          <div className="w-16 h-16 border-4 border-gray-300 rounded-full border-t-blue-500 animate-spin"></div>
         </div>
         <p className="mt-4 text-lg font-semibold text-gray-600 dark:text-gray-400">
           Loading your profile data...
@@ -126,7 +126,7 @@ export default function ProfilePage() {
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-6 text-red-600 text-center bg-gray-50 dark:bg-gray-900">
+      <div className="flex items-center justify-center min-h-screen p-6 text-center text-red-600 bg-gray-50 dark:bg-gray-900">
         <p>Error: {error}</p>
       </div>
     );
@@ -135,7 +135,7 @@ export default function ProfilePage() {
   // If not signed in or user/userData is null after loading, prompt sign-in
   if (!user || !isSignedIn || !userData) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-gray-50 dark:bg-gray-900">
+      <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-50 dark:bg-gray-900">
         <p className="text-lg font-semibold text-gray-600 dark:text-gray-400">
           Please sign in to view your profile.
         </p>
@@ -149,9 +149,9 @@ export default function ProfilePage() {
   const clerkUsername = user.username; // Clerk's username
 
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-900 dark:text-gray-100 py-6 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen px-4 py-6 text-gray-900 bg-gray-100 dark:text-gray-100 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto space-y-6">
-        <div className="flex flex-col items-start space-y-1 mb-6">
+        <div className="flex flex-col items-start mb-6 space-y-1">
           <div className="flex justify-between items-center w-full border-b-1 pb-2.5 border-gray-200 ">
             <h1 className="text-lg font-semibold text-gray-800">
               {userFullName || clerkUsername || "User Profile"}
@@ -160,8 +160,8 @@ export default function ProfilePage() {
           </div>
           {user.createdAt && (
             <p className="text-gray-500 text-sm border-b-1 w-full pb-2.5 border-gray-200">
-              <span className="font-bold text-lg">User since</span> <br />{" "}
-              <span className="text-gray-800 text-xl font-semibold">
+              <span className="text-lg font-bold">User since</span> <br />{" "}
+              <span className="text-xl font-semibold text-gray-800">
                 {formatDate(user.createdAt)}
               </span>
             </p>
@@ -174,44 +174,44 @@ export default function ProfilePage() {
         </div>
 
         {/* Personal Information Card */}
-        <div className="bg-white  p-6 rounded-lg shadow-sm">
-          <h2 className="text-lg font-bold mb-4 text-gray-800 bg-gray-100 py-5 rounded px-2">
+        <div className="p-6 bg-white rounded-lg shadow-sm">
+          <h2 className="px-2 py-5 mb-4 text-lg font-bold text-gray-800 bg-gray-100 rounded">
             Personal Information
           </h2>
 
-          <div className="flex items-center space-x-6 mb-6">
+          <div className="flex items-center mb-6 space-x-6">
             <img
               src={user?.imageUrl || "/default-avatar.jpg"}
               alt={`${userFullName || "User"}'s avatar`}
-              className="w-20 h-20 rounded-full object-cover shadow"
+              className="object-cover w-20 h-20 rounded-full shadow"
             />
             <div className="flex flex-col space-y-3">
               <div className="flex justify-between gap-5 ">
                 <button
                   onClick={handleUpdateAvatar}
-                  className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200 cursor-pointer"
+                  className="px-4 py-2 text-sm font-medium text-gray-800 transition-colors duration-200 bg-gray-100 rounded-md cursor-pointer dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600"
                 >
                   Update avatar
                 </button>
                 {user?.imageUrl && user.imageUrl !== "/default-avatar.jpg" && (
                   <button
                     onClick={handleClearAvatar}
-                    className="px-4 py-2 text-red-600 dark:text-red-400 rounded-md text-sm hover:bg-red-50 dark:hover:bg-gray-700 transition-colors duration-200 bg-gray-100 font-bold cursor-pointer"
+                    className="px-4 py-2 text-sm font-bold text-red-600 transition-colors duration-200 bg-gray-100 rounded-md cursor-pointer dark:text-red-400 hover:bg-red-50 dark:hover:bg-gray-700"
                   >
                     Clear
                   </button>
                 )}
               </div>
-              <p className="text-gray-500 dark:text-gray-400 text-xs">
+              <p className="text-xs text-gray-500 dark:text-gray-400">
                 Recommend size 1:1, up to 2mb
               </p>
             </div>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-2">
             <div>
               <label
                 htmlFor="firstName"
-                className="block text-sm font-bold text-gray-700  mb-1"
+                className="block mb-1 text-sm font-bold text-gray-700"
               >
                 First name
               </label>
@@ -220,13 +220,13 @@ export default function ProfilePage() {
                 type="text"
                 readOnly // Assuming these are display only
                 value={user.firstName || "Not set"} // Using Clerk's firstName
-                className="w-full px-3 py-2 border-2 border-gray-200 rounded-md shadow-sm bg-white text-gray-900 focus:outline-none"
+                className="w-full px-3 py-2 text-gray-900 bg-white border-2 border-gray-200 rounded-md shadow-sm focus:outline-none"
               />
             </div>
             <div>
               <label
                 htmlFor="lastName"
-                className="block text-sm font-bold text-gray-700  mb-1"
+                className="block mb-1 text-sm font-bold text-gray-700"
               >
                 Last name
               </label>
@@ -235,15 +235,15 @@ export default function ProfilePage() {
                 type="text"
                 readOnly // Assuming these are display only
                 value={user.lastName || "Not set"} // Using Clerk's lastName
-                className="w-full px-3 py-2 border-2 border-gray-200 rounded-md shadow-sm bg-white text-gray-900 focus:outline-none"
+                className="w-full px-3 py-2 text-gray-900 bg-white border-2 border-gray-200 rounded-md shadow-sm focus:outline-none"
               />
             </div>
           </div>
         </div>
 
         {/* Email Addresses Card */}
-        <div className="bg-white p-3 rounded-lg shadow-sm">
-          <h2 className="text-lg font-semibold mb-4 text-gray-800 ">
+        <div className="p-3 bg-white rounded-lg shadow-sm">
+          <h2 className="mb-4 text-lg font-semibold text-gray-800 ">
             Email addresses
           </h2>
           {user.emailAddresses?.length > 0 ? (
@@ -253,7 +253,7 @@ export default function ProfilePage() {
                 className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0"
               >
                 <div className="flex items-center space-x-7 md:space-x-48 lg:space-x-50 ">
-                  <span className="text-gray-700  text-base">
+                  <span className="text-base text-gray-700">
                     {emailObject.emailAddress}
                   </span>
                   {emailObject.verification &&
@@ -270,26 +270,26 @@ export default function ProfilePage() {
                   )}
                 </div>
                 {/* Optional: Add "Link" button if Clerk allows linking/unlinking emails */}
-                {/* <button className="text-blue-600 dark:text-blue-400 text-sm hover:underline">Link</button> */}
+                {/* <button className="text-sm text-blue-600 dark:text-blue-400 hover:underline">Link</button> */}
               </div>
             ))
           ) : (
-            <p className="text-gray-500 dark:text-gray-400 text-sm mb-4">
+            <p className="mb-4 text-sm text-gray-500 dark:text-gray-400">
               No email addresses found.
             </p>
           )}
 
           <button
             onClick={handleAddEmail}
-            className="flex items-center text-blue-600 dark:text-blue-400 mt-4 text-sm font-medium hover:underline"
+            className="flex items-center mt-4 text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
           >
             <Plus className="w-4 h-4 mr-1" /> Add email
           </button>
         </div>
 
         {/* Username Card */}
-        <div className="bg-white p-3 rounded-lg shadow-sm">
-          <h2 className="text-lg font-semibold mb-4 text-gray-800 ">
+        <div className="p-3 bg-white rounded-lg shadow-sm">
+          <h2 className="mb-4 text-lg font-semibold text-gray-800 ">
             Username
           </h2>
           <div className="flex justify-between gap-x-2 ">
@@ -298,10 +298,10 @@ export default function ProfilePage() {
               type="text"
               readOnly
               value={clerkUsername || "Not set"} // Using Clerk's username
-              className="flex-grow px-3 py-2 border border-gray-300  rounded-md shadow-sm bg-gray-50  text-gray-900  focus:outline-none"
+              className="flex-grow px-3 py-2 text-gray-900 border border-gray-300 rounded-md shadow-sm bg-gray-50 focus:outline-none"
             />
             {/* Optional: Add a button to manage username via Clerk's UIs (e.g., UserProfile) */}
-            <button className="px-2 py-2 bg-gray-600 text-white rounded-md text-sm font-medium hover:bg-gray-500 transition-colors duration-200 cursor-pointer">
+            <button className="px-2 py-2 text-sm font-medium text-white transition-colors duration-200 bg-gray-600 rounded-md cursor-pointer hover:bg-gray-500">
               Manage
             </button>
           </div>
@@ -310,7 +310,7 @@ export default function ProfilePage() {
         {/* Booking History Section */}
         {bookings.length > 0 ? (
           <>
-            <h2 className="text-2xl font-bold mt-8 mb-4 text-gray-900">
+            <h2 className="mt-8 mb-4 text-2xl font-bold text-gray-900">
               Booking History
             </h2>
             <div className="mt-4">
@@ -325,10 +325,10 @@ export default function ProfilePage() {
                   return (
                     <div
                       key={booking._id} // Assuming _id is unique and available
-                      className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow flex flex-col sm:flex-row sm:items-center sm:justify-between"
+                      className="flex flex-col p-4 bg-gray-100 rounded-lg shadow dark:bg-gray-800 sm:flex-row sm:items-center sm:justify-between"
                     >
-                      <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-x-4">
-                        <div className="bg-gray-200 dark:bg-gray-700 rounded-lg px-4 py-3 text-gray-900 dark:text-gray-100 font-semibold">
+                      <div className="flex flex-col space-y-2 sm:flex-row sm:items-center sm:space-x-4">
+                        <div className="px-4 py-3 font-semibold text-gray-900 bg-gray-200 rounded-lg dark:bg-gray-700 dark:text-gray-100">
                           {booking.room}{" "}
                           {/* Assuming booking.room is directly the room name/ID */}
                         </div>
@@ -344,7 +344,7 @@ export default function ProfilePage() {
                           <strong>Duration:</strong> {totalDays} days
                         </p>
                       </div>
-                      <p className="text-lg font-bold text-green-500 mt-2 sm:mt-0">
+                      <p className="mt-2 text-lg font-bold text-green-500 sm:mt-0">
                         <span className="text-white">Price:</span> $
                         {booking.price ? booking.price.toFixed(2) : "N/A"}
                       </p>
@@ -355,15 +355,15 @@ export default function ProfilePage() {
             </div>
           </>
         ) : (
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
-            <h2 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">
+          <div className="p-6 bg-white rounded-lg shadow-sm dark:bg-gray-800">
+            <h2 className="mb-4 text-lg font-semibold text-gray-800 dark:text-gray-200">
               Booking History
             </h2>
             <p className="text-gray-500 dark:text-gray-400">
               You don't have any bookings yet.
             </p>
             {/* Optional: Add a link to your booking page */}
-            <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+            <button className="px-4 py-2 mt-4 text-white transition-colors bg-blue-600 rounded-md hover:bg-blue-700">
               <Link href="/rooms">Book a Room</Link>
             </button>
           </div>
