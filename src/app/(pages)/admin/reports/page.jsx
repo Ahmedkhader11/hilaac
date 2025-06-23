@@ -44,7 +44,7 @@ export default function AdminReportsPage() {
 
   return (
     <div className="p-8">
-      <h1 className="mb-6 text-2xl font-bold">Admin Reports</h1>
+      <h1 className="mb-6 text-2xl font-bold text-white">Admin Reports</h1>
       {/* Date Range Filter */}
       <div className="flex flex-wrap gap-4 justify-end mb-6">
         <h3 className="text-lg font-bold leading-18">Filter: </h3>
