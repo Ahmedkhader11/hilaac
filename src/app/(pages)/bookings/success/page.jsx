@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-async function fetchBooking(bookingId) {
-  if (!bookingId || bookingId === "Unknown") return null;
+async function fetchBooking(userId) {
+  if (!userId || userId === "Unknown") return null;
   try {
     const base = process.env.NEXT_PUBLIC_BASE_URL;
-    const url = `${base}/api/bookings/${bookingId}`;
+    const url = `${base}/api/bookings/${userId}`;
 
     const res = await fetch(url, { cache: "no-store" });
     if (!res.ok) return null;
@@ -20,8 +20,9 @@ export default async function BookingSuccess({ searchParams }) {
   // await new Promise((resolve) => setTimeout(resolve, 3000));
   // const { bookingId } = await searchParams;
   const awaitedParams = await searchParams;
-  const bookingId = awaitedParams?.bookingId || "Unknown";
-  const booking = await fetchBooking(bookingId);
+  // const bookingId = awaitedParams?.bookingId || "Unknown";
+  const userId = awaitedParams?.userId || "Unknown";
+  const booking = await fetchBooking(userId);
 
   return (
     <div className="flex justify-center items-center px-2 py-8 min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
@@ -46,7 +47,7 @@ export default async function BookingSuccess({ searchParams }) {
         </h1>
         <p className="mb-4 text-lg text-gray-600">
           Your reservation ID:{" "}
-          <span className="font-mono text-blue-600">{bookingId}</span>
+          <span className="font-mono text-blue-600">{userId}</span>
         </p>
         <p className="mb-6 text-gray-500">
           We've sent a confirmation email to your address.
