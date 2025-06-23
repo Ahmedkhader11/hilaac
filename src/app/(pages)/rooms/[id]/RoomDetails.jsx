@@ -113,7 +113,7 @@ export default function RoomDetails({ room: initialRoomData }) {
       }
 
       const result = await response.json();
-      router.push(`/bookings/success?bookingId=${result.bookingId} `);
+      router.push(`/bookings/success?bookingId=${result.bookingId}`);
     } catch (err) {
       setError(err.message);
     } finally {
