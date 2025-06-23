@@ -20,9 +20,8 @@ export default async function BookingSuccess({ searchParams }) {
   // await new Promise((resolve) => setTimeout(resolve, 3000));
   // const { bookingId } = await searchParams;
   const awaitedParams = await searchParams;
-  // const bookingId = awaitedParams?.bookingId || "Unknown";
-  const userId = awaitedParams?.userId || "Unknown";
-  const booking = await fetchBooking(userId);
+  const bookingId = awaitedParams?.bookingId || "Unknown";
+  const booking = await fetchBooking(bookingId);
 
   return (
     <div className="flex justify-center items-center px-2 py-8 min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
