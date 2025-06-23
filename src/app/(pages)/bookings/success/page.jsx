@@ -1,14 +1,15 @@
 import Link from "next/link";
 
 async function fetchBooking(bookingId) {
-  console.log("bookingId:", bookingId);
   if (!bookingId || bookingId === "Unknown") return null;
   try {
-    const res = await fetch(`/api/bookings/${bookingId}`, {
-      cache: "no-store",
-    });
+    const base = process.env.NEXT_PUBLIC_BASE_URL;
+    const url = `${base}/api/bookings/${bookingId}`;
+
+    const res = await fetch(url, { cache: "no-store" });
     if (!res.ok) return null;
     const data = await res.json();
+
     return data;
   } catch (e) {
     console.error("Fetch error:", e);
