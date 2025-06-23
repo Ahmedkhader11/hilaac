@@ -195,7 +195,6 @@ export default function AdminLayout({ children }) {
         <div className="p-3 mt-22">
           <div className="p-6 min-h-screen bg-white rounded-xl dark:bg-gray-800">
             {children}
-            <Footer />
           </div>
         </div>
       </main>

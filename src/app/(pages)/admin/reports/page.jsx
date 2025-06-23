@@ -124,7 +124,7 @@ export default function AdminReportsPage() {
           <ul>
             {report.popularRooms.map((room, idx) => (
               <li
-                key={room._id || idx}
+                key={`${room._id}-${idx}`}
                 className="flex justify-between py-2 border-b last:border-b-0"
               >
                 <span>{room._id || "Unknown Room"}</span>
