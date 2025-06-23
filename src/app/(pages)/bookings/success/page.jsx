@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-async function fetchBooking(userId) {
-  if (!userId || userId === "Unknown") return null;
+async function fetchBooking(bookingId) {
+  if (!bookingId || bookingId === "Unknown") return null;
   try {
     const base = process.env.NEXT_PUBLIC_BASE_URL;
-    const url = `${base}/api/bookings/${userId}`;
+    const url = `${base}/api/bookings/${bookingId}`;
 
     const res = await fetch(url, { cache: "no-store" });
     if (!res.ok) return null;
@@ -47,7 +47,7 @@ export default async function BookingSuccess({ searchParams }) {
         </h1>
         <p className="mb-4 text-lg text-gray-600">
           Your reservation ID:{" "}
-          <span className="font-mono text-blue-600">{userId}</span>
+          <span className="font-mono text-blue-600">{bookingId}</span>
         </p>
         <p className="mb-6 text-gray-500">
           We've sent a confirmation email to your address.

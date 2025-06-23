@@ -8,9 +8,7 @@ export async function GET(_request, { params }) {
     const { id } = await params; // 'id' is the bookingId passed in the URL
 
     // Find the booking by its _id and populate the room details
-    const booking = await Booking.findOne({ userId: id })
-      .populate("room")
-      .lean();
+    const booking = await Booking.findById(id).populate("room").lean();
 
     if (!booking) {
       return new NextResponse(JSON.stringify({ error: "Booking not found" }), {
