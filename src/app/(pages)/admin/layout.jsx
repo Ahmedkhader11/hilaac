@@ -9,10 +9,12 @@ import {
   Users,
   Menu,
   X,
+  BarChart2,
   Settings,
   AlertCircle,
 } from "lucide-react";
 import { UserButton } from "@clerk/nextjs";
+import Footer from "@/components/Footer";
 
 export default function AdminLayout({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -45,6 +47,11 @@ export default function AdminLayout({ children }) {
       icon: <Users className="w-5 h-5" />,
     },
     {
+      href: "/admin/reports",
+      label: "Reports",
+      icon: <BarChart2 className="w-5 h-5" />,
+    },
+    {
       href: "/admin/settings",
       label: "Settings",
       icon: <Settings className="w-5 h-5" />,
@@ -55,7 +62,7 @@ export default function AdminLayout({ children }) {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Mobile Sidebar Toggle */}
       <button
-        className="md:hidden fixed top-16 right-2 z-50 p-2 rounded-lg bg-gray-800 active:ring text-white hover:bg-gray-700 transition-colors"
+        className="fixed right-2 top-16 z-50 p-2 text-white bg-gray-800 rounded-lg transition-colors md:hidden active:ring hover:bg-gray-700"
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
       >
         {isSidebarOpen ? (
@@ -74,10 +81,10 @@ export default function AdminLayout({ children }) {
               : "-translate-x-full md:translate-x-0"
           }`}
       >
-        <div className="flex flex-col h-full p-4 border-r border-gray-700">
+        <div className="flex flex-col p-4 h-full border-r border-gray-700">
           {/* Logo Section */}
-          <div className="mb-4 px-4 py-3 bg-gray-700/20 rounded-lg">
-            <h2 className="text-xl font-bold flex items-center gap-2">
+          <div className="px-4 py-3 mb-4 rounded-lg bg-gray-700/20">
+            <h2 className="flex gap-2 items-center text-xl font-bold">
               <AlertCircle className="w-6 h-6 text-blue-400" />
               Hilaac Admin
             </h2>
@@ -103,28 +110,28 @@ export default function AdminLayout({ children }) {
           </nav>
 
           {/* Profile Section */}
-          <div className="mt-auto pt-4 border-t border-gray-700">
-            <div className="flex items-center gap-3 px-4 py-3 hover:bg-gray-700/30 rounded-lg cursor-pointer transition-colors">
-              <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center">
+          <div className="pt-4 mt-auto border-t border-gray-700">
+            <div className="flex gap-3 items-center px-4 py-3 rounded-lg transition-colors cursor-pointer hover:bg-gray-700/30">
+              <div className="flex justify-center items-center w-8 h-8 bg-blue-600 rounded-full">
                 <span className="text-sm font-medium">A</span>
               </div>
               <div>
                 <p className="text-sm font-medium">Admin User</p>
                 <p className="text-xs text-gray-400">admin@hilaac.com</p>
               </div>
-              <UserButton className="w-5 h-5 ml-auto" />
+              <UserButton className="ml-auto w-5 h-5" />
             </div>
           </div>
         </div>
       </aside>
 
       {/* Main Content */}
-      <main className="md:ml-64 transition-all duration-300 my-2">
+      <main className="my-2 transition-all duration-300 md:ml-64">
         {/* Top Header */}
-        <header className="bg-white dark:bg-gray-800 shadow-sm fixed top-12 right-0 left-0 md:left-64 ">
-          <div className="px-6 py-4 flex items-center justify-between ">
+        <header className="fixed right-0 left-0 top-12 bg-white shadow-sm dark:bg-gray-800 md:left-64">
+          <div className="flex justify-between items-center px-6 py-4">
             <div className="relative">
-              <h1 className="text-xl font-semibold text-gray-800 dark:text-white ">
+              <h1 className="text-xl font-semibold text-gray-800 dark:text-white">
                 Welcome back, Admin
               </h1>
               <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -135,13 +142,13 @@ export default function AdminLayout({ children }) {
             {/* Notification & Profile */}
             <div className="relative">
               <button
-                className="p-2 pb-4  mr-5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors cursor-pointer"
+                className="p-2 pb-4 mr-5 rounded-full transition-colors cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
                 onClick={() => setShowNotifications(!showNotifications)}
               >
                 <span className="sr-only">Notifications</span>
                 <div className="relative">
                   {notifications.length > 0 && (
-                    <span className="absolute top-0 right-0 w-4 h-4 bg-red-500 text-white text-xs flex items-center justify-center rounded-full">
+                    <span className="flex absolute top-0 right-0 justify-center items-center w-4 h-4 text-xs text-white bg-red-500 rounded-full">
                       {notifications.length}
                     </span>
                   )}
@@ -163,7 +170,7 @@ export default function AdminLayout({ children }) {
 
               {/* Notification Dropdown */}
               {showNotifications && (
-                <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-700 shadow-lg rounded-lg p-4">
+                <div className="absolute right-0 p-4 mt-2 w-64 bg-white rounded-lg shadow-lg dark:bg-gray-700">
                   {notifications.length === 0 ? (
                     <p className="text-sm text-gray-500 dark:text-gray-200">
                       No notifications
@@ -185,9 +192,10 @@ export default function AdminLayout({ children }) {
         </header>
 
         {/* Content Area */}
-        <div className="mt-22 p-3">
-          <div className="bg-white dark:bg-gray-800 rounded-xl min-h-screen p-6">
+        <div className="p-3 mt-22">
+          <div className="p-6 min-h-screen bg-white rounded-xl dark:bg-gray-800">
             {children}
+            <Footer />
           </div>
         </div>
       </main>

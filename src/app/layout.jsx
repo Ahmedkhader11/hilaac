@@ -2,7 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ClerkLoaded, ClerkProvider } from "@clerk/nextjs";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+
 import ThemeProvider from "@/components/home/ThemeProvider";
 import { neobrutalism } from "@clerk/themes";
 
@@ -51,8 +51,7 @@ export default function RootLayout({ children }) {
           >
             <ClerkLoaded>
               <Header />
-              <main className="min-h-screen pt-10 mx-auto">{children}</main>
-              <Footer />
+              <main className="pt-10 mx-auto min-h-screen">{children}</main>
             </ClerkLoaded>
           </body>
         </html>
