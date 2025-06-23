@@ -92,28 +92,51 @@ export async function POST(req) {
 
     await newBooking.save();
 
-    // --- 5. Atomically Update User's bookingCount ---
-    // This finds the user and sets bookingCount to 1 ONLY if it's currently 0.
-    // If it's already 1, this operation does nothing for bookingCount, preventing it from exceeding 1.
-    const updatedUser = await User.findOneAndUpdate(
-      { clerkId: userId, bookingCount: { $lt: 1 } }, // Condition: userId and bookingCount < 1
-      { $set: { bookingCount: 1 } }, // Action: Set bookingCount to 1
-      { new: true, upsert: true } // Options: Return updated doc, create if not exists (upsert for user setup)
-    );
+    // --- 5. Update User's bookingCount (using the more accurate logic) ---
+    try {
+      // First, try to find the existing user
+      let user = await User.findOne({ clerkId: userId });
 
-    if (!updatedUser) {
-      console.warn(
-        `Booking created for user ${userId}, but bookingCount was already 1 or user not found with current settings.`
-      );
-      // You might add logic here to inform the client or take other actions
-      // if `updatedUser` is null and you strictly enforce only one booking total.
+      if (!user) {
+        // User doesn't exist, create new user with bookingCount = 1
+        user = new User({
+          clerkId: userId,
+          email: email,
+          name: name,
+          bookingCount: 1,
+        });
+        await user.save();
+      } else {
+        // User exists, update bookingCount only if it's not already set to 1 or more
+        if (!user.bookingCount || user.bookingCount < 1) {
+          user.bookingCount = 1;
+          await user.save();
+        } else {
+          console.warn(
+            `Booking created for user ${userId}, but bookingCount was already ${user.bookingCount}.`
+          );
+        }
+      }
+    } catch (userError) {
+      console.error("Error updating user booking count:", userError);
+      // Don't fail the booking if user update fails
+      // The booking was already created successfully
     }
-
     return new NextResponse(
       JSON.stringify({
         bookingId: newBooking._id,
         message: "Booking successful",
-        booking: newBooking,
+        booking: {
+          bookingId: newBooking._id,
+          roomName: room.name, // or room.title
+          roomPrice: room.price,
+          roomDescription: room.description,
+          startDate: newBooking.startDate,
+          endDate: newBooking.endDate,
+          guests: newBooking.guests,
+          paymentMethod: newBooking.paymentMethod,
+          totalPrice: newBooking.price,
+        },
       }),
       { status: 201 }
     );
@@ -136,12 +159,15 @@ export async function POST(req) {
 export async function GET() {
   try {
     await db();
-    const bookings = await Booking.find({}).lean();
+    const bookings = await Booking.find({}).populate("room").lean();
 
-    const updatedBookings = bookings.map(({ _id, __v, ...booking }) => ({
+    const updatedBookings = bookings.map(({ _id, __v, room, ...booking }) => ({
       id: _id.toString(),
       booked: true,
       ...booking,
+      roomName: room?.name || "",
+      roomDescription: room?.description || "",
+      roomPrice: room?.price || "",
     }));
 
     return new NextResponse(JSON.stringify(updatedBookings), {

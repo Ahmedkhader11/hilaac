@@ -5,27 +5,34 @@ import { NextResponse } from "next/server";
 export async function GET(_request, { params }) {
   try {
     await db();
-    const { id } = await params; // 'id' is the user.id passed in the URL
+    const { id } = await params; // 'id' is the bookingId passed in the URL
 
-    // Query Bookings collection using the userId field
-    const bookings = await Booking.find({ userId: id }).lean();
+    // Find the booking by its _id and populate the room details
+    const booking = await Booking.findById(id).populate("room").lean();
 
-    if (!bookings || bookings.length === 0) {
-      return new NextResponse(
-        JSON.stringify({ error: "No bookings found for this user" }),
-        {
-          status: 404,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+    if (!booking) {
+      return new NextResponse(JSON.stringify({ error: "Booking not found" }), {
+        status: 404,
+        headers: { "Content-Type": "application/json" },
+      });
     }
 
-    return new NextResponse(JSON.stringify(bookings), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
+    // Add room details to the response
+    return new NextResponse(
+      JSON.stringify({
+        ...booking,
+        id: booking._id.toString(),
+        roomName: booking.room?.name || "",
+        roomDescription: booking.room?.description || "",
+        roomPrice: booking.room?.price || "",
+      }),
+      {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
   } catch (error) {
-    console.error("Error fetching bookings:", error);
+    console.error("Error fetching booking:", error);
     return new NextResponse(JSON.stringify({ error: "Server error" }), {
       status: 500,
       headers: { "Content-Type": "application/json" },
