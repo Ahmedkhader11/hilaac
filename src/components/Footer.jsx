@@ -5,18 +5,18 @@ import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-500 mt-16 pt-5">
-      <div className=" container mx-auto px-4 ">
+    <footer className="pt-5 mt-16 bg-gray-500">
+      <div className="container px-4 mx-auto">
         <Link
           href={"/"}
-          className="font-black text-amber-500 text-3xl tracking-widest flex justify-center "
+          className="flex justify-center text-3xl font-black tracking-widest text-amber-500"
         >
           Hilaac
         </Link>
 
         <h4 className="font-semibold text-[40px]">Contact</h4>
 
-        <div className="flex  px-3 flex-wrap gap-16 items-center justify-between md:text-start">
+        <div className="flex flex-wrap gap-16 justify-between items-center px-3 md:text-start">
           <div className="flex-1">
             <p>150 Road</p>
             <div className="flex items-center py-4">
@@ -25,11 +25,11 @@ const Footer = () => {
             </div>
             <div className="flex items-center py-4">
               <BsTelephoneOutbound />
-              <p className="ml-2">252-63-4363578</p>
+              <p className="ml-2">252-63-4444444</p>
             </div>
             <div className="flex items-center pt-2.5">
               <BiMessageDetail />
-              <p className="ml-2 font-black ">HILAAC HOTEL</p>
+              <p className="ml-2 font-black">HILAAC HOTEL</p>
             </div>
           </div>
 
@@ -78,15 +78,15 @@ const Footer = () => {
           </div>
 
           <div className="flex-1 md:text-center">
-            <h1 className="font-black flex justify-center">Social Media</h1>
-            <div className="flex flex-col items-center justify-center gap-5 py-4">
+            <h1 className="flex justify-center font-black">Social Media</h1>
+            <div className="flex flex-col gap-5 justify-center items-center py-4">
               <Link
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex gap-2"
               >
-                <FaFacebook className="text-2xl hover:text-blue-500 transition-colors duration-300" />
+                <FaFacebook className="text-2xl transition-colors duration-300 hover:text-blue-500" />
                 facebook
               </Link>
               <Link
@@ -104,7 +104,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="flex gap-2 items-start justify-auto"
               >
-                <FaInstagram className="text-2xl hover:text-pink-500 transition-colors duration-300" />
+                <FaInstagram className="text-2xl transition-colors duration-300 hover:text-pink-500" />
                 instagram
               </Link>
               <Link
@@ -113,19 +113,19 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="flex gap-2"
               >
-                <FaLinkedin className="text-2xl hover:text-blue-700 transition-colors duration-300 mr-2" />
+                <FaLinkedin className="mr-2 text-2xl transition-colors duration-300 hover:text-blue-700" />
                 linkedin
               </Link>
             </div>
           </div>
         </div>
-        <div className="header-copyright text-center mt-10">
+        <div className="mt-10 text-center header-copyright">
           &copy;{" "}
           <span className="font-extrabold">{new Date().getFullYear()} </span>
           Hilaac Hotel
         </div>
       </div>
-      <p className="font-black text-xl flex justify-center mt-10 ">
+      <p className="flex justify-center mt-10 text-xl font-black">
         Designed with ❤️ by Hilaac Team.
       </p>
       <div className="bg-gray-700 h-10 md:h[70px] mt-8 w-full bottom-0 left-0"></div>
