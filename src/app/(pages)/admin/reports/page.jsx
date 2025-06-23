@@ -29,8 +29,18 @@ export default function AdminReportsPage() {
       });
   }, [startDate, endDate]);
 
-  if (loading) return <div>Loading report...</div>;
-  if (!report) return <div>Failed to load report.</div>;
+  if (loading)
+    return (
+      <div className="flex justify-center items-center text-2xl text-center text-white">
+        Loading report...
+      </div>
+    );
+  if (!report)
+    return (
+      <div className="flex justify-center items-center text-2xl text-center text-white">
+        Failed to load report.
+      </div>
+    );
 
   return (
     <div className="p-8">
